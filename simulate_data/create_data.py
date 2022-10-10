@@ -10,9 +10,10 @@ def main():
     parser = argparse.ArgumentParser()
     # File name to write simulated data to (.csv only, 10/9/22)
     parser.add_argument('--write_file_name', type=str, required=True)
-    # File name to take input parameters from (.txt tab delimited only)
+    # File name to take input parameters from (.txt tab delimited recommended)
     parser.add_argument('--param_file_name', type=str, required=True)
     parser.add_argument('--param_delim', type=str, required=True)
+    # Statistically significant sample size: 200
     parser.add_argument('--sample_size', type=int, required=True)
 
     args = parser.parse_args()
@@ -24,7 +25,6 @@ def main():
 
     # Go through parameter file, fill lists
     with open(args.param_file_name, 'r') as f_read:
-        #reader = csv.reader(f_read, delimiter=',')#, quotechar='"', quoting=csv.QUOTE_ALL)
         iter = 0
         for row in f_read:
             list = row.split('\t')
@@ -32,9 +32,8 @@ def main():
                 question_header.append(list[0])
                 answer_header.append(list[1:])
             else:
-                probability.append(list[1:]) # TODO Make probabilities add to 1
+                probability.append(list[1:])  # TODO Prob add to 1
             iter += 1
-    #question_header.insert(0, 'Timestamp') # TODO Google forms adds time stamp
 
     with open(args.write_file_name, 'w', newline='') as f_write:
         writer = csv.writer(f_write)
@@ -56,6 +55,7 @@ def main():
                         ans_idx += 1
                         curr_prob += float(probability[iQuest][ans_idx])
             writer.writerow(sample)
+
 
 if __name__ == '__main__':
     main()
