@@ -34,7 +34,7 @@ def main():
             else:
                 probability.append(list[1:]) # TODO Make probabilities add to 1
             iter += 1
-    question_header.insert(0, 'Timestamp') # TODO Google forms adds time stamp
+    #question_header.insert(0, 'Timestamp') # TODO Google forms adds time stamp
 
     with open(args.write_file_name, 'w', newline='') as f_write:
         writer = csv.writer(f_write)
@@ -51,13 +51,11 @@ def main():
                 while (not_accept):
                     if (rand_no < curr_prob):
                         not_accept = False
-                        pdb.set_trace()
                         sample.append(answer_header[iQuest][ans_idx])
                     else:
                         ans_idx += 1
                         curr_prob += float(probability[iQuest][ans_idx])
-            pdb.set_trace()
-        
+            writer.writerow(sample)
 
 if __name__ == '__main__':
     main()
