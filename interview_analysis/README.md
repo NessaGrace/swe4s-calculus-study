@@ -14,5 +14,5 @@ in sample_interview_text_with_questions.txt.
 
 # How to Run Code:
 python deductive.py \
-    --transcript_file_name sample_interview_text_with_questions.txt
+    --transcript_file_name sample_interview_text_with_questions.txt \
     --word_list_file_name random_word_list.txt
