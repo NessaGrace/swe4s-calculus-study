@@ -16,6 +16,9 @@ class TestUtils(unittest.TestCase):
 
     def test_cramersV(self):
         return -1
+    
+    def test_filter_data(self):
+        return -1
 
 
 if __name__ == '__main__':

@@ -16,3 +16,16 @@ def cramersV():
     
     '''
     return -1
+
+def filter_data(data):
+    '''
+    Filter data to only include specific values from columns
+
+    Parameters
+    ----------
+    
+    Returns
+    -------
+    
+    '''
+    return -1
