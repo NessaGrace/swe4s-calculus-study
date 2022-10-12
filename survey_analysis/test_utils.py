@@ -8,7 +8,8 @@ class TestUtils(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        return -1
+        # read in simulated survey data
+        cls.survey_data = pd.read_csv('test_sim_data.csv')
 
     @classmethod
     def tearDownClass(cls):
@@ -18,7 +19,7 @@ class TestUtils(unittest.TestCase):
         return -1
     
     def test_filter_data(self):
-        return -1
+        # Test to see if one 
 
 
 if __name__ == '__main__':
