@@ -19,6 +19,7 @@
 #         phil, mod-lan, med, ear-spc, law, soc-serv]
 
 import argparse
+import pandas as pd
 
 def main():
     parser = argparse.ArgumentParser(
@@ -47,6 +48,15 @@ def main():
                         required=False)
 
     args = parser.parse_args()
+    
+    # Read in the survey data file
+    data = pd.read_csv(args.file_name)
+    
+    # filter for just demographics we are interested in
+    #data_filtered = filter_data()
+    
+    # Find the cramers-v correlation coefficient
+    #corr = cramersV(filtered_data)
     
 if __name__ == '__main__':
     main()
