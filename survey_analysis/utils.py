@@ -37,7 +37,10 @@ def filter_data(data, col_name, keys):
     filtered_data : A pandas dataframe with only the desired keys in the column.
     
     '''
-
+    # make sure data is a dataframe
+    if not isinstance(data, pd.DataFrame):
+        raise TypeError("data input must be pandas dataframe")
+    
     filtered_data = data[data[col_name].isin(keys)]
     
     return filtered_data
