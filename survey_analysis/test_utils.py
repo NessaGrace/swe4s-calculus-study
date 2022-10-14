@@ -1,8 +1,7 @@
 import unittest
 import utils
-import random
-import numpy as np
 import pandas as pd
+import pandas.testing as pd_testing
 
 
 class TestUtils(unittest.TestCase):
@@ -16,8 +15,8 @@ class TestUtils(unittest.TestCase):
         df = pd.DataFrame(data, columns=['Names', 'Counts'])
         
         # Positive test
-        target_df = pd.DataFrame([['A', 10], ['B', 15], ['D', 15]], columns=['Names', 'Counts'])
-        self.assertEqual(utils.filter_data(df, 'Counts', [15, 10]), target_df)
+        target_df = df.drop(index=2)
+        pd_testing.assert_frame_equal(utils.filter_data(df, 'Counts', [15, 10]), target_df)
 
 
 if __name__ == '__main__':
