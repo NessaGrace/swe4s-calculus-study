@@ -40,6 +40,10 @@ def filter_data(data, col_name, keys):
     # make sure data is a dataframe
     if not isinstance(data, pd.DataFrame):
         raise TypeError("data input must be pandas dataframe")
+        
+    # make sure col_name is actually a column name
+    if not col_name in data.columns:
+        raise KeyError("col_name not a column in data")
     
     filtered_data = data[data[col_name].isin(keys)]
     
