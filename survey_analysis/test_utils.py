@@ -27,6 +27,10 @@ class TestUtils(unittest.TestCase):
         # Make sure column name is actually a column in the dataframe
         with self.assertRaises(KeyError):
             utils.filter_data(df, 'Count', [15, 10])
+            
+        # make sure keys are in a list
+        with self.assertRaises(TypeError):
+            utils.filter_data(df, 'Counts', 10)
         
 
 
