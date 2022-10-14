@@ -4,6 +4,9 @@
 
 '''
 
+import pandas as pd
+
+
 def cramersV():
     '''
     Calculate the Cramers-V correlation coefficient for categorical data
@@ -27,11 +30,14 @@ def filter_data(data, col_name, keys):
     
     col_name : The name of the column to look for keys in. Expects a string.
     
-    keys : Values in the column to filter for. Expects list of strings.
+    keys : Values in the column to filter for.
     
     Returns
     -------
     filtered_data : A pandas dataframe with only the desired keys in the column.
     
     '''
-    return -1
+
+    filtered_data = data[data[col_name].isin(keys)]
+    
+    return filtered_data
