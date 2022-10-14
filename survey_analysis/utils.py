@@ -45,6 +45,11 @@ def filter_data(data, col_name, keys):
     if not col_name in data.columns:
         raise KeyError("col_name not a column in data")
     
+    # make sure keys is a list
+    if not isinstance(keys, list):
+        raise TypeError("keys must be type list")
+        
+    # filter the data
     filtered_data = data[data[col_name].isin(keys)]
     
     return filtered_data
