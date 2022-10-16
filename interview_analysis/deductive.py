@@ -3,6 +3,21 @@
     * functions will go here
 """
 
+#TODO: -replace sample data with simulated data
+#      - account for additional questions that may come up
+#      - account for lower/uppercase
+#      - account for punctuation
+#      - word fragments like "rent" vs. "apparently" - both contain "rent"
+#      - account for different spellings and meanings of words,
+#      - account for how accurate audio is,
+#      - think of other cases for searches that return bad results and
+#        handle with test-driven development
+#      - need to make word_list research-based, replace sample file
+#      - must have phrases in word_list too
+
+# Keep for formatting for now: A = A.append(line.rstrip().split('\n'))
+
+
 import argparse
 
 def main():
@@ -22,47 +37,29 @@ def main():
 
     args = parser.parse_args()
 
-    #TODO: currently sample interview data in f, replace w/ simulated data,
-    # need to exclude the questions but also divide by them, account
-    # for additional questions that may come up, account for lower/upper,
-    # account for punctuation, may need to use sample audio file that
-    # had speech to text done on it too, word fragments like "rent" vs.
-    # "apparently" - both contain "rent", worry about different spellings
-    # and meanings of words, worry about how accurate audio is, think of
-    # other cases for searches that return bad results and add them in with
-    # time (test-driven development)
+    # read in transcript file
+    transcript_file = open(args.transcript_file_name, 'r')
 
-    f = open(args.transcript_file_name, 'r')
+    # read in questions_file
+    
 
-    A = []
-    print(type(A))
-
-    for line in f:
-        #print(line)
-        A = A.append(line.rstrip().split('\n')) # something is wrong in this line
+    # note: lines read in as the entire Q or A (not by indiv. lines)
+    for line in transcript_file:
+        if
 
     f.close()
 
-    print(A)
+    #print(A)
 
-    #TODO: currently random word list in g, replace w/ researched word list
-    # current random list has some words in, some out of interview script,
-    # will need to add phrases eventually
+    # read in word list file
+    #g = open(args.word_list_file_name, 'r')
 
-    # THE CODE BELOW IS NOT COMPLETE
-
-    print()
-    g = open(args.word_list_file_name, 'r')
-
-    for line in g:
-        print(line)
+    #for line in g:
+     #   print(line)
     #    B = line.rstrip().split(',')
 
-    g.close()
+    #g.close()
 
-    #for i in A:
-     #   for j in B:
-      #      if B[j] in A[i] # will need to be if STRINGS in B[j] in A[i]
 
 if __name__ == '__main__':
     main()
