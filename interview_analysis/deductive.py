@@ -107,7 +107,7 @@ def main():
         #else:
             #word in ans_word_list_no_quotes and word in word_counter:
          #   word_counter[word] += 1
-    print(word_counter) # "the" is being miscounted (doubled), need to fix
+    print(word_counter)
 
 
 if __name__ == '__main__':
