@@ -3,30 +3,31 @@
 
 import argparse
 import pandas as pd
+import utils
 
 def main():
     parser = argparse.ArgumentParser(
                 description='Find correlations for calculus 2 retention',
-                prog='correlation.py')
+                prog='probability.py')
 
     parser.add_argument('--file_name',
                         type=str,
                         help='Name of the file with survey data',
                         required=True)
     parser.add_argument('--gender_identity',
-                        type=list,
+                        nargs='+',
                         help='The list of gender identities to examine',
                         required=False)
     parser.add_argument('--race_ethnicity',
-                        type=list,
+                        nargs='+',
                         help='The list of race/ethnicities to examine',
                         required=False)
     parser.add_argument('--highest_math',
-                        type=list,
+                        action='append',
                         help='The list of previous math experience to examine',
                         required=False)
     parser.add_argument('--field',
-                        type=list,
+                        action='append',
                         help='The list of intended fields to examine',
                         required=False)
 
@@ -68,20 +69,20 @@ def main():
     
     # filter for just demographics we are interested in
     # First filter gender identity
-    filtered_gender = filter_data(
+    filtered_gender = utils.filter_data(
       data, 
       'gender_id', 
       args.gender_identity)
     
     # Then filter race/ethnicity
-    filtered_gender_race = filter_data(
+    filtered_gender_race = utils.filter_data(
        filtered_gender, 
        'race_eth', 
        args.race_ethnicity)
     
     # Find the probability to take calc 2
-    general_probs = utils.find_probs(data, "calc_2")
-    filtered_probs = utils.find_probs(filtered_gender_race, "calc_2")
+    general_probs = utils.find_probs(data, "calc2")
+    filtered_probs = utils.find_probs(filtered_gender_race, "calc2")
     
     # Print out both probs
     print(general_probs['Yes'])
