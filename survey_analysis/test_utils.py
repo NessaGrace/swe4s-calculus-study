@@ -6,8 +6,14 @@ import pandas.testing as pd_testing
 
 class TestUtils(unittest.TestCase):
 
-    def test_cramersV(self):
-        return -1
+    def test_find_probs(self):
+        # Create some test data
+        data = [['A', 100], ['B', 750], ['C', 150]]
+        df = pd.DataFrame(data, columns=['Names', 'Counts'])
+        
+        # Positive test
+        target = {'A':10, 'B':75, 'C':15}
+        self.assertEqual(utils.find_probs(df, 'Counts'), target)
 
     def test_filter_data(self):
         # Set up data
