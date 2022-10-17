@@ -1,21 +1,25 @@
 ''' Functions to aid in the survey analysis
 
     * cramersV - Finds the Cramers-V correlation coefficient
+    * filter_data - Filters dataframe for target column values
 
 '''
 
 import pandas as pd
+import numpy as np
 
 
-def cramersV():
+def cramersV(data):
     '''
     Calculate the Cramers-V correlation coefficient for categorical data
     
     Parameters
     ----------
-    
+    data : The data to use to find the Cramers-V correlation coefficient
+
     Returns
     -------
+    CV : The Cramers-V correlation coefficient
     
     '''
     return -1
@@ -53,3 +57,43 @@ def filter_data(data, col_name, keys):
     filtered_data = data[data[col_name].isin(keys)]
     
     return filtered_data
+
+
+def find_probs(data, col_name):
+    '''
+    Find probability of each value in a given column
+    
+    Parameters
+    ----------
+    data : Dataset that needs filtering. Expects .pandas dataframe.
+    
+    col_name : The name of the column to look for keys in. Expects a string.
+    
+    Returns
+    -------
+    prob_dict = A dictionary of probabilities for each value in the column
+    
+    '''
+    # Select column
+    col = data[col_name]
+    
+    # Values in column
+    vals = col.value_counts().index.tolist()
+    
+    # Find number of counts for each value
+    counts = []
+    for i in range(len(vals)):
+        counts.append(col.value_counts()[i])
+    counts = np.array(counts)
+    
+    # Find the probabilities for each value using counts
+    probs = []
+    sum_ = counts.sum()
+    for i in range(len(vals)):
+        probs.append(counts[i]/sum_)
+    probs = np.array(probs)
+    
+    # create a dictionary of values and probabilities
+    prob_dict = dict(zip(vals, np.round(probs, 3)))
+    
+    return prob_dict

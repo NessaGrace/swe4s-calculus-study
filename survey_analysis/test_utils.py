@@ -8,11 +8,11 @@ class TestUtils(unittest.TestCase):
 
     def test_find_probs(self):
         # Create some test data
-        data = [['A', 100], ['B', 750], ['C', 150]]
+        data = [['A', 'v1'], ['B', 'v1'], ['C', 'v2'], ['D', 'v2'], ['E', 'v1']]
         df = pd.DataFrame(data, columns=['Names', 'Counts'])
         
         # Positive test
-        target = {'A':10, 'B':75, 'C':15}
+        target = {'v1': 0.60, 'v2': 0.40}
         self.assertEqual(utils.find_probs(df, 'Counts'), target)
 
     def test_filter_data(self):
