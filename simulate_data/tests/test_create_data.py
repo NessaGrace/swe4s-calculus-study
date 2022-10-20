@@ -1,8 +1,10 @@
 import unittest
 import os
+import sys
 import random
 import numpy as np
-import file_utils as util
+sys.path.append("..")
+import file_utils as util #nopep8
 
 
 class TestCreateData(unittest.TestCase):
@@ -33,4 +35,3 @@ class TestCreateData(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-        
