@@ -22,7 +22,6 @@ def main():
 
     # Read data from file
     questions, answers, probability = util.read_data(args.param_file_name)
-
     # Write data to file
     util.write_data(args.write_file_name,
                     questions,
