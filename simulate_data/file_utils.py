@@ -6,6 +6,9 @@ import sys
 import os
 
 
+def check_sum(probability):
+    return None
+
 def read_data(file_name):
     # Lists of parameters to generate + questions
     question_header = []
@@ -15,9 +18,8 @@ def read_data(file_name):
     # Go through parameter file, fill lists
     try:
         f_read = open(file_name, 'r')
-    except FileNotFoundError:
-        print('Input parameter file name not found.')
-        sys.exit(1)
+    except Exception:
+        raise FileNotFoundError('Input parameter file name not found.')
 
     # Read questions, answers, and probabilities from parameter file
     iter = 0
@@ -26,8 +28,11 @@ def read_data(file_name):
             if (row):
                 info = row.rstrip().split('\t')  # TODO why not argument?
             else:
+                f_read.close()
                 raise IndexError('File empty.')
-            if (len(info) > 0):
+
+            # If list does not contain first entry, must be blank
+            if (info[0]):
                 if (iter % 2 == 0):
                     question_header.append(info[0])
                     answer_header.append(info[1:])
@@ -35,19 +40,26 @@ def read_data(file_name):
                     probability.append(info[1:])
                 iter += 1
             else:
-                raise IndexError('WARNING: Line ' + str(iter + 1) + ' is empty.')
+                f_read.close()
+                raise IndexError('WARNING: Line ' + str(iter + 1)
+                                 + ' is empty.')
     else:
+        f_read.close()
         raise TypeError('File is empty.')
 
     # Check whether probabilities of all questions add to 1
+    '''
     for iQ in range(0, len(question_header)):
         sum = 0
         for iAns in range(0, len(probability[iQ])):
             sum += float(probability[iQ][iAns])
         if abs(sum - 1) > tolerance:  # Sum = 1 within tolerance
-            raise ArithmeticError('Warning: Probabilities of Question '
-                                  + str(iQ) + ' does not ' + 'add to 1.')
-
+            f_read.close()
+            print('Warning: Probabilities of Question ' + str(iQ)
+                  + ' does not ' + 'add to 1.')
+            # Return different arguments than function for debugging purposes
+            return answer_header, probability, sum
+    '''
     f_read.close()
 
     return question_header, answer_header, probability
