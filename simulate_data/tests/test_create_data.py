@@ -40,9 +40,9 @@ class TestCreateData(unittest.TestCase):
         self.assertRaises(IndexError, util.read_data, self.mid_file)
 
     def test_probability_summing(self):
-        probability = []
+        probability = [0.5, 0.5]
         r = util.check_sum(probability)
-        self.assertEqual(r, None)
+        self.assertEqual(r, 1)
 
     def tearDown(self):
         os.remove(self.empty_file)

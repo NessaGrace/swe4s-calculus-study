@@ -7,7 +7,16 @@ import os
 
 
 def check_sum(probability):
-    return None
+    if probability is None:
+        return None
+    if len(probability) == 0:
+        return None
+
+    sum = 0
+    for iAns in range(len(probability)):
+        sum += probability[iAns] 
+
+    return sum
 
 def read_data(file_name):
     # Lists of parameters to generate + questions
@@ -48,18 +57,15 @@ def read_data(file_name):
         raise TypeError('File is empty.')
 
     # Check whether probabilities of all questions add to 1
-    '''
     for iQ in range(0, len(question_header)):
-        sum = 0
-        for iAns in range(0, len(probability[iQ])):
-            sum += float(probability[iQ][iAns])
+        sum = check_sum(probability[iQ])
         if abs(sum - 1) > tolerance:  # Sum = 1 within tolerance
             f_read.close()
             print('Warning: Probabilities of Question ' + str(iQ)
                   + ' does not ' + 'add to 1.')
             # Return different arguments than function for debugging purposes
             return answer_header, probability, sum
-    '''
+
     f_read.close()
 
     return question_header, answer_header, probability
