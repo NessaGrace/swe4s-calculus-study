@@ -27,6 +27,13 @@ class TestCreateData(unittest.TestCase):
             f_mid.write('something \t something \n')
         f_mid.close()
 
+        self.random_prob = []
+        self.true_random_sum = 0
+        for i in range(10):
+            a = random.random()
+            self.random_prob.append(a)
+            self.true_random_sum += a
+
     # Check error when input parameter file path does not exist    
     def test_nonexist_file(self):
         self.assertRaises(FileNotFoundError, util.read_data, 'fake_file.txt')
@@ -40,9 +47,8 @@ class TestCreateData(unittest.TestCase):
         self.assertRaises(IndexError, util.read_data, self.mid_file)
 
     def test_probability_summing(self):
-        probability = [0.5, 0.5]
-        r = util.check_sum(probability)
-        self.assertEqual(r, 1)
+        r = util.check_sum(self.random_prob)
+        self.assertEqual(r, self.true_random_sum)
 
     def tearDown(self):
         os.remove(self.empty_file)
