@@ -26,25 +26,40 @@ def main():
     tolerance = 1e-6
 
     # Go through parameter file, fill lists
-    with open(args.param_file_name, 'r') as f_read:
-        iter = 0
-        for row in f_read:
-            info = row.rstrip().split('\t')
-            if (iter % 2 == 0):
-                question_header.append(info[0])
-                answer_header.append(info[1:])
-            else:
-                probability.append(info[1:])
-            iter += 1
-        for iQ in range(0, len(question_header)):
-            sum = 0
-            for iAns in range(0, len(probability[iQ])):
-                sum += float(probability[iQ][iAns])
-            if abs(sum - 1) > tolerance:  # Probabilities should approx add to 1
-                print('Warning: Probabilities of Question ' + str(iQ) + ' does not '
-                      + 'add to 1. Quitting...')
-                sys.exit(1)
+    try:
+        f_read = open(args.param_file_name)
+    except:
+        print('Input parameter file name not found. Exiting...')
+        sys.exit(1)
 
+    # Read questions, answers, and probabilities from parameter file
+    iter = 0
+    for row in f_read:
+        info = row.rstrip().split('\t') # TODO why not argument?
+        if (len(info) > 0):
+            continue
+        else: 
+            print('WARNING: Line ' + str(iter + 1) + ' is empty. Exiting...')
+            sys.exit(1)
+
+        if (iter % 2 == 0):
+            question_header.append(info[0])
+            answer_header.append(info[1:])
+        else:
+            probability.append(info[1:])
+        iter += 1
+
+    # Check whether probabilities of all questions add to 1
+    for iQ in range(0, len(question_header)):
+        sum = 0
+        for iAns in range(0, len(probability[iQ])):
+            sum += float(probability[iQ][iAns])
+        if abs(sum - 1) > tolerance:  # Sum = 1 within tolerance
+            print('Warning: Probabilities of Question ' + str(iQ) + ' does not '
+                  + 'add to 1. Exiting...')
+            sys.exit(1)
+
+    # Write simulated data to file
     with open(args.write_file_name, 'w', newline='') as f_write:
         writer = csv.writer(f_write)
         writer.writerow(question_header)
