@@ -1,0 +1,49 @@
+name: Style, unit, functional tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    
+jobs:
+  run_style_check:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: calc-study
+          environment-file: environment.yml
+      - run: pycodestyle $(git ls-files "*.py")
+  run_unit_tests:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: calc-study
+          environment-file: environment.yml
+      - run: |
+             cd tests
+             python -m unittest test_functions_lib
+  run_functional_tests:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: calc-study
+          environment-file: environment.yml
+      - run: |
+             cd tests
+             bash functional_tests.sh
