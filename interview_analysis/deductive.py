@@ -47,22 +47,33 @@ def main():
     args = parser.parse_args()
 
     # read in questions_file
-    questions_list = fr(args.questions_file_name)
-    # print(questions_list)
+    try:
+        questions_list = fr(args.questions_file_name)
+    except FileNotFoundError as e:
+        print('could not find ' + args.questions_file_name)
+        sys.exit(1)
+    except Exception as e:
+        print('error of type ' + str(type(e)) + ' occurred')
+        sys.exit(1)
 
     # read in transcript file
-    transcript = fr(args.transcript_file_name)
-    # print(transcript)
+    try:
+        transcript = fr(args.transcript_file_name)
+    except FileNotFoundError as e:
+        print('could not find ' + args.transcript_file_name)
+        sys.exit(1)
+    except Exception as e:
+        print('error of type ' + str(type(e)) + ' occurred')
+        sys.exit(1)
 
     # remove questions from transcript
     answers = []
 
     for line in transcript:
-        # line.replace(u'\xa0', u' ') # implement later?
         if line not in questions_list:
             answers.append(line)
 
-    # print(answers)
+    #print(answers)
 
     answer_words = []
     for answer in answers:
@@ -89,8 +100,15 @@ def main():
     #print(ans_word_list_no_quotes)
 
     # read in word list file
-    word_list = fr(args.word_list_file_name)
-    #print(word_list)
+    try:
+        word_list = fr(args.word_list_file_name)
+    except FileNotFoundError as e:
+        print('could not find ' + args.word_list_file_name)
+        sys.exit(1)
+    except Exception as e:
+        print('error of type ' + str(type(e)) + ' occurred')
+        sys.exit(1)
+
 
     # initialize word_counter dictionary
     word_counter = {}
