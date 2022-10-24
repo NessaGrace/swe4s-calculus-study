@@ -31,8 +31,8 @@ jobs:
           activate-environment: calc-study
           environment-file: environment.yml
       - run: |
-             cd tests
-             python -m unittest test_functions_lib
+          cd tests
+          python -m unittest test_functions_lib
   run_functional_tests:
     runs-on: windows-latest
     defaults:
@@ -44,6 +44,5 @@ jobs:
         with:
           activate-environment: calc-study
           environment-file: environment.yml
-      - run: |
-             cd tests
-             bash functional_tests.sh
+      - run:
+          bash tests/functional_tests.sh
