@@ -108,7 +108,7 @@ def main():
     except Exception as e:
         print('error of type ' + str(type(e)) + ' occurred')
         sys.exit(1)
-
+    print(word_list)
 
     # initialize word_counter dictionary
     word_counter = {}
@@ -125,7 +125,7 @@ def main():
         #else:
             #word in ans_word_list_no_quotes and word in word_counter:
          #   word_counter[word] += 1
-    print(word_counter)
+    #print(word_counter)
 
 
 if __name__ == '__main__':
