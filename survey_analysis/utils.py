@@ -1,6 +1,5 @@
 ''' Functions to aid in the survey analysis
 
-    * cramersV - Finds the Cramers-V correlation coefficient
     * filter_data - Filters dataframe for target column values
 
 '''
@@ -8,21 +7,6 @@
 import pandas as pd
 import numpy as np
 
-
-def cramersV(data):
-    '''
-    Calculate the Cramers-V correlation coefficient for categorical data
-    
-    Parameters
-    ----------
-    data : The data to use to find the Cramers-V correlation coefficient
-
-    Returns
-    -------
-    CV : The Cramers-V correlation coefficient
-    
-    '''
-    return -1
 
 def filter_data(data, col_name, keys):
     '''
@@ -61,11 +45,11 @@ def filter_data(data, col_name, keys):
 
 def find_probs(data, col_name):
     '''
-    Find probability of each value in a given column
+    Find probability of each unique value in a given column
     
     Parameters
     ----------
-    data : Dataset that needs filtering. Expects .pandas dataframe.
+    data : Dataset that needs filtering. Expects pandas dataframe.
     
     col_name : The name of the column to look for keys in. Expects a string.
     
