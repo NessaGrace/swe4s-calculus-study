@@ -28,6 +28,7 @@ def main():
         sys.exit(1)
 
     print(test_list)
+    print(type(test_list))
 
 if __name__ == '__main__':
     main()
