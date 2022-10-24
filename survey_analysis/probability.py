@@ -1,9 +1,11 @@
-# Goal: given a csv file of survey responses, find the correlation 
-# that that demographic has to taking calc 2 in the future
+# Goal: given a csv file of survey responses, find the probability 
+# that that demographic will take calc 2 in the future
 
 import argparse
 import pandas as pd
 import utils
+import viz_lib
+import matplotlib.pyplot as plt
 
 def main():
     parser = argparse.ArgumentParser(
@@ -23,11 +25,11 @@ def main():
                         help='The list of race/ethnicities to examine',
                         required=False)
     parser.add_argument('--highest_math',
-                        action='append',
+                        nargs='+',
                         help='The list of previous math experience to examine',
                         required=False)
     parser.add_argument('--field',
-                        action='append',
+                        nargs='+',
                         help='The list of intended fields to examine',
                         required=False)
 
@@ -84,11 +86,14 @@ def main():
     general_probs = utils.find_probs(data, "calc2")
     filtered_probs = utils.find_probs(filtered_gender_race, "calc2")
     
-    # Print out both probs
-    print(general_probs['Yes'])
-    print(filtered_probs['Yes'])
-    
-    
-    
+    # Create a plot similar to plot in literature
+    # create a bar chart with identity on x-axis and probability on the y-axis
+    viz_lib.bar(x=['All survey respondents', 'target demographic'],
+                y=[general_probs['Yes'], filtered_probs['Yes']],
+                title="Probabilities of a student taking Calculus II",
+                xlabel="Demographic",
+                ylabel="Probability to take Calculus II",
+                file_name="probabilities_bar.png")
+
 if __name__ == '__main__':
     main()
