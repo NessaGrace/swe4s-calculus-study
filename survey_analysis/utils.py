@@ -1,7 +1,7 @@
 ''' Functions to aid in the survey analysis
 
     * filter_data - Filters dataframe for target column values
-
+    * find_probs - Find probability of each unique column value occurring
 '''
 
 import pandas as pd
