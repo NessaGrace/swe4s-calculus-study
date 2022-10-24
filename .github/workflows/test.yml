@@ -44,6 +44,5 @@ jobs:
         with:
           activate-environment: calc-study
           environment-file: environment.yml
-      - run: |
-          cd tests
-          bash functional_tests.sh
+      - run:
+          bash tests/functional_tests.sh
