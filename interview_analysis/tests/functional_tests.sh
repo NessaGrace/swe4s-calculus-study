@@ -4,15 +4,8 @@ test -e ssshtest || wget -q 'https://raw.githubusercontent.com/ryanlayer/ssshtes
 . ssshtest
 
 run file_reader python ../read_files.py --file_name ../random_word_list.txt
-#assert_stdout
-assert_in_stdout "['two', 'red', 'magenta', 'pool', 'rent', 'orange', 'five', 'broadway', 'theater', 'theatre', 'joy', 'bro', 'chica', 'purple', 'work', 'lyric', 'ordinary', 'life', 'rock', 'in', 'the']"
-#assert_in_stdout ['two', 'red', 'magenta', 'pool', 'rent', 'orange', 'five', 'broadway', 'theater', 'theatre', 'joy', 'bro', 'chica', 'purple', 'work', 'lyric', 'ordinary', 'life', 'rock', 'in', 'the']
-#assert_in_stdout [two, red, magenta, pool, rent, orange, five, broadway, theater, theatre, joy, bro, chica, purple, work, lyric, ordinary, life, rock, in, the]
-#assert_in_stdout ['two', 'red', 'magenta', 'pool', 'rent', 'orange', 'five',\
-  #                'broadway', 'theater', 'theatre', 'joy', 'bro', 'chica',\
-  #                'purple', 'work', 'lyric', 'ordinary', 'life', 'rock',\
-   #               'in', 'the']
 
+assert_in_stdout "['two', 'red', 'magenta', 'pool', 'rent', 'orange', 'five', 'broadway', 'theater', 'theatre', 'joy', 'bro', 'chica', 'purple', 'work', 'lyric', 'ordinary', 'life', 'rock', 'in', 'the']"
 assert_exit_code 0
 
 run deductive python ../deductive.py \
