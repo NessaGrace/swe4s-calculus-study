@@ -94,7 +94,7 @@ def main():
     men_probs = utils.find_probs(men_filt, 'calc2')['Yes']
     
     # create a bar chart with identity on x-axis and probability on the y-axis
-    labels = ['Input student', 'All survey respondents', 'Women', 'Men']
+    labels = ['Input student', 'All students', 'Women', 'Men']
     probs = [filt_probs, all_probs, women_probs, men_probs]
     viz_lib.bar(x=labels,
                 y=probs,

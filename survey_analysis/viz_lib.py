@@ -28,7 +28,7 @@ def bar(x, y, title, xlabel, ylabel, file_name):
     
     Returns
     -------
-    A bar chart
+    None, creates a bar chart in current directory
     '''
     colors = []
     for i in range(len(x)):
