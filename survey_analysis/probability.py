@@ -83,17 +83,26 @@ def main():
        args.race_ethnicity)
     
     # Find the probability to take calc 2
-    general_probs = utils.find_probs(data, "calc2")
-    filtered_probs = utils.find_probs(filtered_gender_race, "calc2")
+    all_probs = utils.find_probs(data, "calc2")['Yes']
+    filt_probs = utils.find_probs(filtered_gender_race, "calc2")['Yes']
     
-    # Create a plot similar to plot in literature
+    # Compare to women and men statisitcs
+    women_filt = utils.filter_data(data, 'gender_id', ['cis_W', 'trans_W'])
+    women_probs = utils.find_probs(women_filt, 'calc2')['Yes']
+    
+    men_filt = utils.filter_data(data, 'gender_id', ['cis_M', 'trans_M'])
+    men_probs = utils.find_probs(men_filt, 'calc2')['Yes']
+    
     # create a bar chart with identity on x-axis and probability on the y-axis
-    viz_lib.bar(x=['All survey respondents', 'target demographic'],
-                y=[general_probs['Yes'], filtered_probs['Yes']],
+    labels = ['Input student', 'All survey respondents', 'Women', 'Men']
+    probs = [filt_probs, all_probs, women_probs, men_probs]
+    viz_lib.bar(x=labels,
+                y=probs,
                 title="Probabilities of a student taking Calculus II",
                 xlabel="Demographic",
                 ylabel="Probability to take Calculus II",
                 file_name="probabilities_bar.png")
+
 
 if __name__ == '__main__':
     main()

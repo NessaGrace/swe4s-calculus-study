@@ -30,9 +30,15 @@ def bar(x, y, title, xlabel, ylabel, file_name):
     -------
     A bar chart
     '''
+    colors = []
+    for i in range(len(x)):
+        if i==0:
+            colors.append('rebeccapurple')
+        else:
+            colors.append('mediumpurple')
     
     fig = plt.figure()
-    plt.bar(x, y)
+    plt.bar(x, y, color=colors)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
     plt.title(title)
