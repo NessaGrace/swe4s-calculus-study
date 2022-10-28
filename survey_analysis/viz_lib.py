@@ -30,6 +30,7 @@ def bar(x, y, title, xlabel, ylabel, file_name):
     -------
     None, creates a bar chart in current directory
     '''
+    # use a unique color for the input student bar
     colors = []
     for i in range(len(x)):
         if i==0:
