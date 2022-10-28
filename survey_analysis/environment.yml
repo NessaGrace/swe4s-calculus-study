@@ -1,0 +1,9 @@
+name: cgrs
+channels:
+  - conda-forge
+  - anaconda
+dependencies:
+  - numpy
+  - pycodestyle
+  - pandas
+  - matplotlib
