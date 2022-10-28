@@ -23,7 +23,7 @@ to take Calculus II. Then we would run:
 $ python probability.py \
     --file_name test_sim_data.csv \
     --gender_identity [cis-W, trans_W] \
-    --race_ethnicity [black] \
+    --race_ethnicity [black]
 ```
 
 The output will be a bar plot comparing the input demographic to all
