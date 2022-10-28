@@ -82,10 +82,27 @@ def main():
        'race_eth', 
        args.race_ethnicity)
     
+    # Make sure filtered data is non-empty
+    if len(filtered_gender_race.index) == 0:
+        raise KeyError("Sorry, no survey responses match this request. " +
+                       "Please try again with a broader search.")
+        sys.exit(1)
+                       
+    # Warn user if there are less than 30 responses
+    if len(filtered_gender_race.index) <= 30:
+        print("Warning: there are very few students that match your " +
+              "inquiry. Results may not be accurate.\nNumber of " + 
+              f"responses: {len(filtered_gender_race.index)}")
+    
     # Find the probability to take calc 2
     all_probs = utils.find_probs(data, "calc2")['Yes']
-    filt_probs = utils.find_probs(filtered_gender_race, "calc2")['Yes']
-    
+
+    # Make sure there is at least 1 yes response
+    if 'Yes' in filtered_gender_race.calc2:
+        filt_probs = utils.find_probs(filtered_gender_race, "calc2")['Yes']
+    else:
+        filt_probs = 0
+
     # Compare to women and men statisitcs
     women_filt = utils.filter_data(data, 'gender_id', ['cis_W', 'trans_W'])
     women_probs = utils.find_probs(women_filt, 'calc2')['Yes']
@@ -102,7 +119,6 @@ def main():
                 xlabel="Demographic",
                 ylabel="Probability to take Calculus II",
                 file_name="probabilities_bar.png")
-
 
 if __name__ == '__main__':
     main()
