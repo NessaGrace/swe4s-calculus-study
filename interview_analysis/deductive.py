@@ -16,11 +16,12 @@
 #      - need to make word_list research-based, replace sample file
 #      - must have phrases in word_list too
 
-# Keep for formatting for now: A = A.append(line.rstrip().split('\n'))
 # Note: files are read in as paragraphs, not lines
 
 import argparse
 import string
+import matplotlib.pyplot as plt
+import numpy as np
 
 from functions_lib import file_reader as fr
 
@@ -73,15 +74,11 @@ def main():
         if line not in questions_list:
             answers.append(line)
 
-    #print(answers)
-
     answer_words = []
     for answer in answers:
         answer_words.append(answer.split())
-    #print(answer_words)
 
     answer_word_list = [answer_word for sublist in answer_words for answer_word in sublist]
-    # print(answer_word_list)
 
     answer_word_list_no_punc = []
     # punc = '''!()[]{};:'"\,<>./?@#$%^&*_~“”''' # note: may need to update,
@@ -97,8 +94,6 @@ def main():
     for answer_word in answer_word_list_no_punc:
         ans_word_list_no_quotes.append(answer_word.replace("“", "").replace("”", ""))
 
-    #print(ans_word_list_no_quotes)
-
     # read in word list file
     try:
         word_list = fr(args.word_list_file_name)
@@ -108,7 +103,6 @@ def main():
     except Exception as e:
         print('error of type ' + str(type(e)) + ' occurred')
         sys.exit(1)
-    print(word_list)
 
     # initialize word_counter dictionary
     word_counter = {}
@@ -116,16 +110,28 @@ def main():
     # count instances of words in word_list in transcript
     for word1 in word_list:
         for word2 in ans_word_list_no_quotes:
-            #if word not in word_counter:
             if word1 == word2:
                 try:
                     word_counter[word1] += 1
                 except KeyError:
                     word_counter[word1] = 1
-        #else:
-            #word in ans_word_list_no_quotes and word in word_counter:
-         #   word_counter[word] += 1
     #print(word_counter)
+
+    # make list of words in word_counter:
+    #word_matches = []
+    #for key in word_counter:
+     #   word_matches.append(key)
+
+    # plot word frequency for words in list:
+    word_matches = list(word_counter.keys())
+    counts = list(word_counter.values())
+
+    fig = plt.figure(figsize = (10, 5))
+    plt.bar(word_matches, counts, color='thistle', width=0.4)
+    plt.xlabel("Word from Word List")
+    plt.ylabel("Frequency in Interview Data")
+    plt.title("Word Frequency in Interview Data")
+    plt.show()
 
 
 if __name__ == '__main__':
