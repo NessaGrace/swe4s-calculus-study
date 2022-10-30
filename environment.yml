@@ -1,5 +1,0 @@
-name: calc-study
-channels:
-  - bioconda
-  - defaults
-prefix: C:\Users\vgmay\anaconda3\envs\calc-study
