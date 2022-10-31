@@ -61,7 +61,7 @@ class TestUtils(unittest.TestCase):
             self.assertEqual(questions[0], 'Question 1')
             self.assertEqual(answers[0], 'A')
             os.remove(f_name)
-        except:
+        except Exception:
             self.fail('write_data did not create file')
             os.remove(f_name)
 
