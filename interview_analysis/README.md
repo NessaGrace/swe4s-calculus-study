@@ -1,4 +1,4 @@
-# Directory Description:
+## Directory Description:
 
 This directory creates the interview analysis software. The current type of
 analysis is deductive analysis, wherein we search each interview transcript
@@ -54,42 +54,45 @@ The output from deductive.py is stored in the directory graphs. Currently,
 this contains 10 bar graphs with word frequency for the simulated interviews.
 
 **Examples**
-Below are examples of how to run the files from within the directory
-interview_analysis. \
 
-To run the main script: \
+Below are examples of how to run the files from within the directory
+interview_analysis. 
+
+To run the main script: 
 
 python deductive.py \
     --word_list_file_name data_files/sim_word_list.txt \
     --questions_file_name data_files/sim_ques.txt
 
-To run the unit tests: \
+To run the unit tests: 
 
-python tests/test_functions_lib.py \
+python tests/test_functions_lib.py 
 
-To run the functional tests: \
+To run the functional tests: 
 
 bash functional_tests.sh
 
 **Command Line Arguments/Parameters**
-In deductive.py: \
+
+In deductive.py: 
 
     - word_list_file_name: the name of the current word list
-      file being used \
+      file being used 
     - questions_file_name: the name of the current question
-      list file being used \
+      list file being used 
 
-In read_files.py: \
+In read_files.py: 
     - file_name: the name of the file used to test file_reader()
       in functional_tests.sh
 
 # How to Install the Software:
+
 For this project, the following installations must be completed
 in the command line: \
     - conda install numpy \
     - conda install pycodestyle \
     - conda install pandas \
-    - conda install matplotlib \
+    - conda install matplotlib 
 
  To run the functional tests using the Stupid Simple baSh Framework,
  you will also need to install the network utility `wget`. `wget` can
