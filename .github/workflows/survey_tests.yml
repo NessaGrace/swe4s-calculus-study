@@ -2,9 +2,13 @@ name: Tests
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - survey_analysis
   pull_request:
-    branches: [main]
+    branches:
+      - main
+      - survey_analysis
 
 jobs:
   functional_tests:
