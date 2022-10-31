@@ -17,7 +17,7 @@ jobs:
       - uses: conda-incubator/setup-miniconda@v2
         with:
           activate-environment: cgrs
-          environment-file:survey_analysis/environment.yml
+          environment-file: survey_analysis/environment.yml
       - run: bash survey_analysis/tests/test_probability.sh
   code_style:
     runs-on: ubuntu-latest
