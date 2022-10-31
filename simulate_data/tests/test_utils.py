@@ -67,11 +67,11 @@ class TestUtils(unittest.TestCase):
 
     def test_count_data(self):
         questions = ['Question 1', 'Question 2']
-        answers = ['A', 'B']
-        probability = ['0.5', '0.5']
+        answers = [['A', 'B'], ['C', 'D']]
+        probability = [['0.5', '0.5'], ['0.75', '0.25']]
         f_name = 'test_write.txt'
         util.write_data(f_name, questions, answers, probability, 100)
-        r = count_data()
+        r = util.count_data(f_name, questions, answers, probability, 100)
         self.assertEqual(r, 0)
 
     def tearDown(self):

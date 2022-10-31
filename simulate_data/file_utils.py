@@ -95,6 +95,41 @@ def write_data(file_name, question_header, answer_header, probability, size):
     return 0
 
 
-def count_data():
+def count_data(file_name, question_header, answer_header, probability, size):
     # Read simulated data from file
-    return None
+    try:
+        f_read = open(file_name, 'r')
+    except Exception:
+        raise FileNotFoundError('Written data file name not found.')
+
+    # Create m x n matrix of 0s to store counts of certain answers
+    m = len(question_header)
+    n = len(answer_header)
+    answer_counts = [[0 for x in range(n)] for x in range(m)]
+
+    iter = 0
+    if (os.path.getsize(file_name) > 0):
+        for row in f_read:
+            if (row):
+                info = row.rstrip().split(',')  # TODO why not argument?
+
+                if (iter == 0):
+                    pass  # Ignore question header
+                else:
+                    for iQ in range(0, len(question_header)):
+                        for iAns in range(0, len(answer_header)):
+                            # Check if written data matches answer
+                            if info[iQ] == answer_header[iQ][iAns]:
+                                answer_counts[iQ][iAns] += 1
+                                break  # Get out of for loop
+                            else:
+                                pass  # Keep checking answers
+            else:
+                f_read.close()
+                raise IndexError('File empty.')
+            iter += 1
+    else:
+        f_read.close()
+        raise TypeError('File is empty.')
+
+    return 0
