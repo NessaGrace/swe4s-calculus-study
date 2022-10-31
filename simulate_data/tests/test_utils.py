@@ -65,6 +65,10 @@ class TestUtils(unittest.TestCase):
             self.fail('write_data did not create file')
             os.remove(f_name)
 
+    def test_count_data(self):
+        r = count_data()
+        self.assertEqual(r, None)
+
     def tearDown(self):
         os.remove(self.empty_file)
         os.remove(self.mid_file)

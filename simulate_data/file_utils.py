@@ -7,6 +7,7 @@ import os
 
 
 def check_sum(probability):
+    tolerance = 1e-6
     if probability is None:
         return None
     if len(probability) == 0:
@@ -23,7 +24,7 @@ def read_data(file_name):
     question_header = []
     answer_header = []
     probability = []
-    tolerance = 1e-6
+
     # Go through parameter file, fill lists
     try:
         f_read = open(file_name, 'r')
@@ -61,10 +62,8 @@ def read_data(file_name):
         sum = check_sum(probability[iQ])
         if abs(sum - 1) > tolerance:  # Sum = 1 within tolerance
             f_read.close()
-            print('Warning: Probabilities of Question ' + str(iQ)
-                  + ' does not ' + 'add to 1.')
-            # Return different arguments than function for debugging purposes
-            return answer_header, probability, sum
+            raise ArithmeticError('Warning: Probabilities of Question ' + str(iQ)
+                                  + ' does not ' + 'add to 1.')
 
     f_read.close()
 
@@ -94,3 +93,7 @@ def write_data(file_name, question_header, answer_header, probability, size):
             writer.writerow(sample)
 
     return 0
+
+
+def count_data():
+    # Read simulated data from file
