@@ -5,7 +5,7 @@ import random
 import numpy as np
 import pdb
 sys.path.append("..")
-import file_utils as util #nopep8
+import file_utils as util  # nopep8
 
 
 class TestUtils(unittest.TestCase):
@@ -34,7 +34,7 @@ class TestUtils(unittest.TestCase):
             self.random_prob.append(a)
             self.true_random_sum += a
 
-    # Check error when input parameter file path does not exist    
+    # Check error when input parameter file path does not exist
     def test_nonexist_file(self):
         self.assertRaises(FileNotFoundError, util.read_data, 'fake_file.txt')
 
@@ -61,7 +61,7 @@ class TestUtils(unittest.TestCase):
             self.assertEqual(questions[0], 'Question 1')
             self.assertEqual(answers[0], 'A')
             os.remove(f_name)
-        except:
+        except Exception:
             self.fail('write_data did not create file')
             os.remove(f_name)
 

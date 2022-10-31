@@ -15,9 +15,10 @@ def check_sum(probability):
 
     sum = 0
     for iAns in range(len(probability)):
-        sum += float(probability[iAns]) 
+        sum += float(probability[iAns])
 
     return sum
+
 
 def read_data(file_name):
     # Lists of parameters to generate + questions
@@ -63,8 +64,8 @@ def read_data(file_name):
         sum = check_sum(probability[iQ])
         if abs(sum - 1) > tolerance:  # Sum = 1 within tolerance
             f_read.close()
-            raise ArithmeticError('Warning: Probabilities of Question ' + str(iQ)
-                                  + ' does not ' + 'add to 1.')
+            raise ArithmeticError('Warning: Probabilities of Question '
+                                  + str(iQ) + ' does not ' + 'add to 1.')
 
     f_read.close()
 
