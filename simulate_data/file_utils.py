@@ -97,3 +97,4 @@ def write_data(file_name, question_header, answer_header, probability, size):
 
 def count_data():
     # Read simulated data from file
+    return None
