@@ -1,9 +1,9 @@
 import unittest
-import utils
 import pandas as pd
 import pandas.testing as pd_testing
 import sys
 sys.path.append('survey_analysis/.')
+import utils
 
 
 class TestUtils(unittest.TestCase):
