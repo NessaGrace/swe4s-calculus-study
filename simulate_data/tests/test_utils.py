@@ -66,8 +66,13 @@ class TestUtils(unittest.TestCase):
             os.remove(f_name)
 
     def test_count_data(self):
+        questions = ['Question 1', 'Question 2']
+        answers = ['A', 'B']
+        probability = ['0.5', '0.5']
+        f_name = 'test_write.txt'
+        util.write_data(f_name, questions, answers, probability, 100)
         r = count_data()
-        self.assertEqual(r, None)
+        self.assertEqual(r, 0)
 
     def tearDown(self):
         os.remove(self.empty_file)
