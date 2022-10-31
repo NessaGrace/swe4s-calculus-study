@@ -15,7 +15,7 @@ def check_sum(probability):
 
     sum = 0
     for iAns in range(len(probability)):
-        sum += probability[iAns] 
+        sum += float(probability[iAns]) 
 
     return sum
 
@@ -24,6 +24,7 @@ def read_data(file_name):
     question_header = []
     answer_header = []
     probability = []
+    tolerance = 1e-3
 
     # Go through parameter file, fill lists
     try:
