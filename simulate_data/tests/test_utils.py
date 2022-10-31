@@ -48,7 +48,7 @@ class TestUtils(unittest.TestCase):
 
     def test_probability_summing(self):
         sum = util.check_sum(self.random_prob)
-        self.assertEqual(sum, self.true_random_sum)
+        self.assertAlmostEqual(sum, self.true_random_sum)
 
     def test_write_data(self):
         questions = ['Question 1']
@@ -70,9 +70,15 @@ class TestUtils(unittest.TestCase):
         answers = [['A', 'B'], ['C', 'D']]
         probability = [['0.5', '0.5'], ['0.75', '0.25']]
         f_name = 'test_write.txt'
-        util.write_data(f_name, questions, answers, probability, 100)
-        r = util.count_data(f_name, questions, answers, probability, 100)
-        self.assertEqual(r, 0)
+        size = 10000
+        tolerance = 1e-2
+        util.write_data(f_name, questions, answers, probability, size)
+        r = util.count_data(f_name, questions, answers, probability, size)
+        os.remove(f_name)
+        for iQ in range(0, len(questions)):
+            for iAns in range(0, len(answers)):
+                residual = abs(r[iQ][iAns] - float(probability[iQ][iAns]))
+                self.assertLess(residual, tolerance)
 
     def tearDown(self):
         os.remove(self.empty_file)

@@ -132,4 +132,10 @@ def count_data(file_name, question_header, answer_header, probability, size):
         f_read.close()
         raise TypeError('File is empty.')
 
-    return 0
+    f_read.close()
+    # Normalize answer_counts to get probabilities
+    for iQ in range(0, len(question_header)):
+        for iAns in range(0, len(answer_header)):
+            answer_counts[iQ][iAns] = answer_counts[iQ][iAns]/size
+
+    return answer_counts
