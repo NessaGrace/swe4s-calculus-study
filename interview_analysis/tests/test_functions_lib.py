@@ -1,4 +1,7 @@
-"""Performs unit tests on functions in functions_lib.py"""
+"""Performs unit tests on functions in functions_lib.py
+
+    * test_file_reader - tests functions_lib.file_reader()
+"""
 
 import unittest
 import os
@@ -6,18 +9,23 @@ import sys
 
 sys.path.append('../')
 
-import functions_lib as fl # nopep8
+import functions_lib as fl  # nopep8
 
+
+# establish base test case wrapper
 class BaseTestCases:
     class BaseTest(unittest.TestCase):
         def common_test(self):
             x = 4
             self.assertEqual(x, 4)
 
+
+# begin testing from functions_lib.py
 class TestFunctionsLib(BaseTestCases.BaseTest):
 
     @classmethod
     def setUpClass(cls):
+        # prepare file with all lowercase contents
         cls.test_file_name_lower = "test_file_lower.txt"
         f = open(cls.test_file_name_lower, 'w')
 
@@ -30,13 +38,13 @@ class TestFunctionsLib(BaseTestCases.BaseTest):
 
         f.close()
 
-
+        # prepare file with upper and lower case
         cls.test_file_name_mixed = "test_file_mixed.txt"
         g = open(cls.test_file_name_mixed, 'w')
 
         cls.test_file_list_mixed = []
         test_str_mixed = ['APPLE', 'ORange', 'strawberry', 'banana',
-                              'kiwi']
+                          'kiwi']
 
         for string in test_str_mixed:
             cls.test_file_list_mixed.append(string.lower())
