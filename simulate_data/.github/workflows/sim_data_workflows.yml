@@ -2,9 +2,9 @@ name: Continuous Test Integration for Simulated data
 
 on:
   push:
-    branches: [ "sim_data" ]
+    branches: [sim_data]
   pull_request:
-    branches: [ "sim_data" ]
+    branches: [sim_data]
 
 jobs:
   run_style_check:
