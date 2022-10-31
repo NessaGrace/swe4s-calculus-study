@@ -4,6 +4,6 @@ set -e
 set -u
 set -o
 
-python -m unittest tests/test_utils.py
+python -m unittest simulate_data/tests/test_utils.py
 
-./tests/run_func_tests.sh
+./simulate_data/tests/run_func_tests.sh

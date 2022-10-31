@@ -4,7 +4,7 @@ import sys
 import random
 import numpy as np
 import pdb
-sys.path.append("..")
+sys.path.append("simulate_data/.")
 import file_utils as util  # nopep8
 
 
@@ -61,7 +61,7 @@ class TestUtils(unittest.TestCase):
             self.assertEqual(questions[0], 'Question 1')
             self.assertEqual(answers[0], 'A')
             os.remove(f_name)
-        except Exception:
+        except:
             self.fail('write_data did not create file')
             os.remove(f_name)
 
@@ -70,7 +70,7 @@ class TestUtils(unittest.TestCase):
         answers = [['A', 'B'], ['C', 'D']]
         probability = [['0.5', '0.5'], ['0.75', '0.25']]
         f_name = 'test_write.txt'
-        size = 10000
+        size = 100000
         tolerance = 1e-2
         util.write_data(f_name, questions, answers, probability, size)
         r = util.count_data(f_name, questions, answers, probability, size)
