@@ -2,8 +2,8 @@ import unittest
 import pandas as pd
 import pandas.testing as pd_testing
 import sys
-import utils
 sys.path.append('survey_analysis/.')
+import utils  # nopep8
 
 
 class TestUtils(unittest.TestCase):
