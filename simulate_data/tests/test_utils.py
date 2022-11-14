@@ -8,6 +8,7 @@ sys.path.append("simulate_data/.")
 import file_utils as util  # nopep8
 
 
+# Test file_utils.py
 class TestUtils(unittest.TestCase):
     def setUp(self):
         self.samp_size = 200
@@ -27,6 +28,7 @@ class TestUtils(unittest.TestCase):
             f_mid.write('something \t something \n')
         f_mid.close()
 
+        # Variables for checking summations
         self.random_prob = []
         self.true_random_sum = 0
         for i in range(10):
@@ -46,10 +48,12 @@ class TestUtils(unittest.TestCase):
     def test_mid_file(self):
         self.assertRaises(IndexError, util.read_data, self.mid_file)
 
+    # Verify check_sum() adds numbers properly
     def test_probability_summing(self):
         sum = util.check_sum(self.random_prob)
         self.assertAlmostEqual(sum, self.true_random_sum)
 
+    # Verify write_data() writes correct values
     def test_write_data(self):
         questions = ['Question 1']
         answers = ['A']
@@ -58,19 +62,22 @@ class TestUtils(unittest.TestCase):
         util.write_data(f_name, questions, answers, probability, 1)
         try:
             f = open(f_name)
+            # Google forms .csv includes question
             self.assertEqual(questions[0], 'Question 1')
+            # 100% probability of answering 'A', so make sure it's written
             self.assertEqual(answers[0], 'A')
             os.remove(f_name)
         except Exception:
             self.fail('write_data did not create file')
             os.remove(f_name)
 
+    # Verify that proper distributions of answers are generated
     def test_count_data(self):
         questions = ['Question 1', 'Question 2']
         answers = [['A', 'B'], ['C', 'D']]
         probability = [['0.5', '0.5'], ['0.75', '0.25']]
         f_name = 'test_write.txt'
-        size = 100000
+        size = 100000  # Need a larger sample size to verify distributions
         tolerance = 1e-2
         util.write_data(f_name, questions, answers, probability, size)
         r = util.count_data(f_name, questions, answers, probability, size)
