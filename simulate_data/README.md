@@ -14,7 +14,7 @@ The "Correlation" row indicates that if a student chooses Algebra 2/College Alge
 
 The spreadsheet must be exported as a tab delimited .txt file to be read out by the software. Be sure that all significant figures show in the Excel file, otherwise when exported, the extra figures will not be written. From this text file, a .csv file is generated and made to look like exported survey data from Google forms from the study. An example of the simulated survey data is shown below.
 
-![](readme_images/sim_data_image.PNG)
+![](readme_images/sim_data_image.png)
 
 ## Installation
 
