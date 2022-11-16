@@ -58,8 +58,9 @@ class TestUtils(unittest.TestCase):
         questions = ['Question 1']
         answers = ['A']
         probability = ['1']
+        corr = ['1']
         f_name = 'test_write.txt'
-        util.write_data(f_name, questions, answers, probability, 1)
+        util.write_data(f_name, questions, answers, probability, corr, 1)
         try:
             f = open(f_name)
             # Google forms .csv includes question
@@ -76,10 +77,11 @@ class TestUtils(unittest.TestCase):
         questions = ['Question 1', 'Question 2']
         answers = [['A', 'B'], ['C', 'D']]
         probability = [['0.5', '0.5'], ['0.75', '0.25']]
+        corr = ['1', '1', '1']
         f_name = 'test_write.txt'
         size = 100000  # Need a larger sample size to verify distributions
         tolerance = 1e-2
-        util.write_data(f_name, questions, answers, probability, size)
+        util.write_data(f_name, questions, answers, probability, corr, size)
         r = util.count_data(f_name, questions, answers, probability, size)
         os.remove(f_name)
         for iQ in range(0, len(questions)):
