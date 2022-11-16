@@ -71,7 +71,6 @@ def read_data(file_name):
         sum = check_sum(probability[iQ])
         if abs(sum - 1) > tolerance:  # Sum = 1 within tolerance
             f_read.close()
-            pdb.set_trace()
             raise ArithmeticError('Warning: Probabilities of Question '
                                   + str(iQ) + ' does not ' + 'add to 1.')
 
@@ -123,7 +122,6 @@ def write_data(file_name, quest_head, ans_head, prob, corr, size):
                 else:
                     ans_idx += 1
                     curr_prob += takeC2_prob[ans_idx]
-
             writer.writerow(sample)
 
     return 0

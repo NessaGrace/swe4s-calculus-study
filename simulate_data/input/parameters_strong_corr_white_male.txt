@@ -1,0 +1,12 @@
+What is your gender identity?	"Cis-gender woman (female at birth, identify as a woman)"	"Cis-gender man (male at birth, identify as a man)"	"Transgender woman (male at birth, identify as a woman)"	"Transgender man (female at birth, identify as a man)"	Non-binary / genderqueer (don't identify exclusively as a man or a woman)	Agender (don't identify as any gender)	Intersex (have a combination of male and female biological traits)	Gender fluid (gender identity and/or expression varies over time)	Other:											
+Probability	0.356	0.644	0	0	0	0	0	0	0											
+Correlation	0.5	1	1	1	1	1	1	1	1											
+What is your race/ethnicity?	White (non-Hispanic/Latinx)	Black/African American (non-Hispanic/Latinx)	Indigenous/Native American/Native Alaskan (non-Hispanic/Latinx)	Asian/Asian American (non-Hispanic/Latinx)	Native Hawaiian/Pacific Islander (non-Hispanic/Latinx)	Hispanic/Latinx	2 or more races	Other:												
+Probability	0.588	0.021	0.013	0.111	0.006	0.108	0.01	0.143												
+Correlation	1	0.5	1	1	1	1	1	1												
+What was the highest mathematics course that you took before your current Calculus I course?	Algebra 2 or College Algebra	Pre-calculus or Trigonometry	AP Calculus AB or equivalent	AP Calculus BC or equivalent	Other:															
+Probability	0.2	0.2	0.2	0.2	0.2															
+Correlation	1	1	1	1	1															
+Pick the field that is closest to what you want to do after graduating. Select all that apply.	Biology	Chemistry	Physics	Mathematics	Computer Science/technology	Engineering/architecture	Economics	Environmental science/studies	Business/finance	Education	Performing arts	Visual arts	Social sciences	English/communication	Philosophy	Modern language	Medicine/health	Earth and/or space science	Law/government	Social services
+Probability	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05
+Correlation	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
