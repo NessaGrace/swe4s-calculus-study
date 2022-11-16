@@ -26,7 +26,7 @@ python create_data.py \
     --param_delim '\t'`
 ```
 
-![](sim_data/readme_images/sim_data_image.png)
+![](simulate_data/readme_images/sim_data_image.png)
 
 ##### For Survey Analysis 
 
