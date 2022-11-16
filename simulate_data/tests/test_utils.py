@@ -77,7 +77,7 @@ class TestUtils(unittest.TestCase):
         questions = ['Question 1', 'Question 2']
         answers = [['A', 'B'], ['C', 'D']]
         probability = [['0.5', '0.5'], ['0.75', '0.25']]
-        corr = ['1', '1', '1']
+        corr = [['1', '1'], ['1', '1']]
         f_name = 'test_write.txt'
         size = 100000  # Need a larger sample size to verify distributions
         tolerance = 1e-2
