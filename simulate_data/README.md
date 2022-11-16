@@ -32,4 +32,4 @@ numpy, argparse, pycodestyle
 
 CU Boulder collects [census data](https://www.colorado.edu/oda/student-data/enrollment/fall-census) every fall. When sorted by all majors required to take Calculus II, we have an estimate of the expected demographics for a typical Calculus I section at CU Boulder. An Excel spreadsheet with CU Fall Census data for gender and race is included in the `input` directory. Note that the Fall Census data does not include gender identities other than Male or Female (which this study aims to rectify!). For now, the probability of all other gender identities aside from Cis-Male and Cis-Female are 0 in that Excel sheet.
 
-![](readme_images/cucensus.png)
+![](readme_images/cucensus.PNG)
