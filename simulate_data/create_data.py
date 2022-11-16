@@ -21,12 +21,13 @@ def main():
     args = parser.parse_args()
 
     # Read data from file
-    questions, answers, probability = util.read_data(args.param_file_name)
+    quest, ans, prob, corr = util.read_data(args.param_file_name)
     # Write data to file
     util.write_data(args.write_file_name,
-                    questions,
-                    answers,
-                    probability,
+                    quest,
+                    ans,
+                    prob,
+                    corr,
                     args.sample_size)
 
 
