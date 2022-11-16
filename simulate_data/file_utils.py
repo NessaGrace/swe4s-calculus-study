@@ -83,7 +83,7 @@ def read_data(file_name):
 def write_data(file_name, quest_head, ans_head, prob, corr, size):
     takeC2_quest = ['Do you plan to take Calculus II?']
     takeC2_ans = ['No', 'Maybe', 'Yes']
-    takeC2_prob = [0.178, 0.0, 0.822] # From Ellis 2016
+    takeC2_prob = [0.178, 0.0, 0.822]  # From Ellis 2016
 
     # Write simulated data to file
     with open(file_name, 'w', newline='') as f_write:
@@ -104,7 +104,7 @@ def write_data(file_name, quest_head, ans_head, prob, corr, size):
                     if (rand_no < curr_prob):
                         not_accept = False
                         sample.append(ans_head[iQuest][ans_idx])
-                        samp_weight = samp_weight * float(corr[iQuest][ans_idx])
+                        samp_weight = samp_weight*float(corr[iQuest][ans_idx])
                     # If Rf > P1, reject answer
                     else:
                         ans_idx += 1
