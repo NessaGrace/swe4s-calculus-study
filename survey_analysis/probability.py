@@ -87,24 +87,23 @@ def main():
     data['race_eth'] = data['race_eth'].map(race_dict)
 
     # filter for just demographics we are interested in
-
     # If field of study is specified, then filter for it
-    # if args.field[0] == 'stem':
-    #     filtered_field = utils.filter_data(
-    #         data,
-    #         'field',
-    #         stem)
-    # elif args.field == 'non-stem':
-    #     filtered_field = utils.filter_data(
-    #         data,
-    #         'field',
-    #         non_stem)
-    # else:
-    #     filtered_field = data
+    if args.field[0] == 'stem':
+        filtered_field = utils.filter_data(
+            data,
+            'field',
+            stem)
+    elif args.field[0] == 'non-stem':
+        filtered_field = utils.filter_data(
+            data,
+            'field',
+            non_stem)
+    else:
+        filtered_field = data
 
     # Then filter gender identity
     filtered_gender = utils.filter_data(
-      data, #filtered_field,
+      filtered_field,
       'gender_id',
       args.gender_identity)
 
@@ -132,6 +131,7 @@ def main():
     # Make sure there is at least 1 yes response
     if 'Yes' in filtered_gender_race.calc2.values:
         filt_probs = utils.find_probs(filtered_gender_race, "calc2")['Yes']
+        print(filt_probs)
     else:
         print('No students in this group responded "Yes"')
         filt_probs = 0
