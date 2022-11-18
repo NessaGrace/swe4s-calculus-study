@@ -19,19 +19,18 @@ def main():
                         required=True)
     parser.add_argument('--gender_identity',
                         nargs='+',
-                        help='The list of gender identities to examine',
+                        help='The list of gender identities to examine.' +
+                        'See README.md for a full list of options',
                         required=False)
     parser.add_argument('--race_ethnicity',
                         nargs='+',
-                        help='The list of race/ethnicities to examine',
-                        required=False)
-    parser.add_argument('--highest_math',
-                        nargs='+',
-                        help='The list of previous math experience to examine',
+                        help='The list of race/ethnicities to examine' +
+                        'See README.md for a full list of options',
                         required=False)
     parser.add_argument('--field',
                         nargs='+',
-                        help='The list of intended fields to examine',
+                        help='The intended field of study. ' +
+                        'See README.md for a full list of options',
                         required=False)
 
     args = parser.parse_args()
@@ -71,15 +70,41 @@ def main():
         'Hispanic/Latinx': 'hisp_latx',
         '2 or more races': '2+',
         'Other:': 'other'}
+    
+    # Define list of STEM fields
+    stem = ['Biology', 'Chemistry', 'Physics', 'Mathematics',
+            'Computer Science/technology', 'Engineering/architecture',
+            'Economics', 'Environmental science/studies', 'Medicine/health',
+            'Earth and/or space science']
+    
+    # Define list of non-stem fields
+    non_stem = ['Education', 'Performing arts', 'Visual arts',
+                'Social sciences', 'English/communication', 'Philosophy',
+                'Modern language', 'Law/government', 'Social services']
 
     # Use dictionaries to shorten the responses
     data['gender_id'] = data['gender_id'].map(gen_dict)
     data['race_eth'] = data['race_eth'].map(race_dict)
 
     # filter for just demographics we are interested in
-    # First filter gender identity
+
+    # If field of study is specified, then filter for it
+    # if args.field[0] == 'stem':
+    #     filtered_field = utils.filter_data(
+    #         data,
+    #         'field',
+    #         stem)
+    # elif args.field == 'non-stem':
+    #     filtered_field = utils.filter_data(
+    #         data,
+    #         'field',
+    #         non_stem)
+    # else:
+    #     filtered_field = data
+
+    # Then filter gender identity
     filtered_gender = utils.filter_data(
-      data,
+      data, #filtered_field,
       'gender_id',
       args.gender_identity)
 
@@ -105,9 +130,10 @@ def main():
     all_probs = utils.find_probs(data, "calc2")['Yes']
 
     # Make sure there is at least 1 yes response
-    if 'Yes' in filtered_gender_race.calc2:
+    if 'Yes' in filtered_gender_race.calc2.values:
         filt_probs = utils.find_probs(filtered_gender_race, "calc2")['Yes']
     else:
+        print('No students in this group responded "Yes"')
         filt_probs = 0
 
     # Compare to women and men statisitcs
