@@ -102,16 +102,22 @@ def main():
         filtered_field = data
 
     # Then filter gender identity
-    filtered_gender = utils.filter_data(
-      filtered_field,
-      'gender_id',
-      args.gender_identity)
+    if args.gender_identity is not None:
+        filtered_gender = utils.filter_data(
+          filtered_field,
+          'gender_id',
+          args.gender_identity)
+    else:
+        filtered_gender = filtered_field
 
     # Then filter race/ethnicity
-    filtered_gender_race = utils.filter_data(
-       filtered_gender,
-       'race_eth',
-       args.race_ethnicity)
+    if args.race_ethnicity is not None:
+        filtered_gender_race = utils.filter_data(
+           filtered_gender,
+           'race_eth',
+           args.race_ethnicity)
+    else:
+        filtered_gender_race = filtered_gender
 
     # Make sure filtered data is non-empty
     if len(filtered_gender_race.index) == 0:
