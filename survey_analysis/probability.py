@@ -70,13 +70,13 @@ def main():
         'Hispanic/Latinx': 'hisp_latx',
         '2 or more races': '2+',
         'Other:': 'other'}
-    
+
     # Define list of STEM fields
     stem = ['Biology', 'Chemistry', 'Physics', 'Mathematics',
             'Computer Science/technology', 'Engineering/architecture',
             'Economics', 'Environmental science/studies', 'Medicine/health',
             'Earth and/or space science']
-    
+
     # Define list of non-stem fields
     non_stem = ['Education', 'Performing arts', 'Visual arts',
                 'Social sciences', 'English/communication', 'Philosophy',
@@ -158,6 +158,9 @@ def main():
                 xlabel="Demographic",
                 ylabel="Probability to take Calculus II",
                 file_name="probabilities_bar.png")
+
+    # Create histogram of reasons student did not take calc 2
+    viz_lib.plot_reasons(data, filtered_gender_race, 'reasons.jpg')
 
 
 if __name__ == '__main__':
