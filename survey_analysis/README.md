@@ -9,18 +9,21 @@ continue on to Calculus II.
 
 ## Usage example
 
-Say we want to look at the probability that a black woman will continue on
+Say we want to look at the probability that a black woman in a STEM field will continue on
 to take Calculus II. Then we would run:
 
 ```sh
 $ python probability.py \
     --file_name test_sim_data.csv \
     --gender_identity cis-W trans_W \
-    --race_ethnicity black
+    --race_ethnicity black \
+    --field stem
 ```
 
-The output will be a bar plot comparing the input demographic to all
-survey respondents as well as men and women separately. 
+There are 2 outputs The first is a bar plot comparing the input demographic to all
+survey respondents as well as men and women separately. The second is a histogram
+of the reasons the students do not plan on taking calculus 2 compared to all survey
+respondents.
 
 ## Available inputs for the command line arguments
 * **--gender_identity:** cis_W, cis_M, trans_W, trans_M, non_binary, agender, intersex, gender_fluid, other
