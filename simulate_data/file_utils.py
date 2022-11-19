@@ -85,10 +85,26 @@ def write_data(file_name, quest_head, ans_head, prob, corr, size):
     takeC2_ans = ['No', 'Maybe', 'Yes']
     takeC2_prob = [0.178, 0.0, 0.822]  # From Ellis 2016
 
+    # Reasons why
+    why_quest = ['If you answered no or maybe, why not?']
+    why_ans = ['n/a - I am taking Calculus II.',
+               'It is not required for my major / I have too'
+               + 'many other courses that I need to complete.',
+               'I changed my major and now do not need to take Calculus II.',
+               'My experience in Calculus I made me decide not'
+               + ' to take Calculus II.',
+               'To do well in Calculus II, I would need to spend more time'
+               + 'and effort than I can afford.',
+               "I don't think I understand the ideas of Calculus I well enough"
+               + 'to take Calculus II.',
+               'My grade in Calculus I was not good enough to continue to'
+               + ' Calculus II.',
+               'Other:']
+
     # Write simulated data to file
     with open(file_name, 'w', newline='') as f_write:
         writer = csv.writer(f_write)
-        writer.writerow(quest_head + takeC2_quest)
+        writer.writerow(quest_head + takeC2_quest + why_quest)
         for iSamp in range(0, size):  # Create int(size) simulated students
             samp_weight = 1  # Combined weight of person taking Calculus II
             sample = []
@@ -119,6 +135,12 @@ def write_data(file_name, quest_head, ans_head, prob, corr, size):
                 if (rand_no < curr_prob):
                     not_accept = False
                     sample.append(takeC2_ans[ans_idx])
+                    if (takeC2_ans[ans_idx] == 'Yes'):
+                        sample.append(why_ans[0])
+                    else:
+                        # Randomly choose reason why for now
+                        sample.append(why_ans[random.randint(1,
+                                                             len(why_ans)-1)])
                 else:
                     ans_idx += 1
                     curr_prob += takeC2_prob[ans_idx]
