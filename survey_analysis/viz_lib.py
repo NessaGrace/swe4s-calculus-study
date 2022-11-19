@@ -72,9 +72,40 @@ def plot_reasons(all_, filt_, output_file):
     filt_ = filt_[filt_.reason != 'n/a - I am taking Calculus II.']
 
     # Find the counts for each reason the student is not taking calc 2
-    all_counts = all_.reason.value_counts()
-    filt_counts = filt_.reason.value_counts()
+    reason_counts_filt = []
+    reason_counts_all = []
 
+    # define all possible reasons
+    reasons = [
+      'I changed my major and now do not need to take Calculus II.',
+      'My experience in Calculus I made me decide not to take Calculus II.',
+      '"To do well in Calculus II, I would need to spend more time and' +
+      'effort than I can afford."',
+      'My grade in Calculus I was not good enough to continue to' +
+      'Calculus II.',
+      'Other:',
+      'It is not required for my major / I have too many other courses' +
+      'that I need to complete.',
+      "I don't think I understand the ideas of Calculus I well enough to" +
+      "take Calculus II."]
+
+    # find the number of times each reason occurs
+    for i in reasons:
+        if i in filt_.reason.unique():
+            reason_counts_filt.append(filt_.reason.value_counts()[i])
+        else:
+            reason_counts_filt.append(0)
+        if i in all_.reason.unique():
+            reason_counts_all.append(all_.reason.value_counts()[i])
+        else:
+            reason_counts_all.append(0)
+
+    # save as array so we can do math later
+    all_counts = np.array(reason_counts_filt)
+    filt_counts = np.array(reason_counts_all)
+
+    print(all_counts)
+    print(filt_counts)
     # create the plot
     fig, axs = plt.subplots(nrows=2,
                             ncols=1,
@@ -86,17 +117,17 @@ def plot_reasons(all_, filt_, output_file):
     ax1 = axs[1]
 
     # find ttl number of students not taking calc 2
-    num_all = all_.reason.value_counts().sum()
-    num_filt = filt_.reason.value_counts().sum()
+    num_all = all_counts.sum()
+    num_filt = filt_counts.sum()
 
     # plot the bar charts for both the filtered student and all respondents
     ax0.bar(x=np.arange(0, 7)-0.2,
-            height=(filt_.reason.value_counts()/num_filt)*100,
+            height=(filt_counts/num_filt)*100,
             label='filtered respondents',
             width=0.4,
             color='rebeccapurple')
     ax0.bar(x=np.arange(0, 7)+0.2,
-            height=(all_.reason.value_counts()/num_all)*100,
+            height=(all_counts/num_all)*100,
             label='All respondents',
             width=0.4,
             color='mediumpurple')
