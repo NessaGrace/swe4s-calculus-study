@@ -19,25 +19,29 @@ def main():
                         required=True)
     parser.add_argument('--gender_identity',
                         nargs='+',
-                        help='The list of gender identities to examine',
+                        help='The list of gender identities to examine.' +
+                        'See README.md for a full list of options',
                         required=False)
     parser.add_argument('--race_ethnicity',
                         nargs='+',
-                        help='The list of race/ethnicities to examine',
-                        required=False)
-    parser.add_argument('--highest_math',
-                        nargs='+',
-                        help='The list of previous math experience to examine',
+                        help='The list of race/ethnicities to examine' +
+                        'See README.md for a full list of options',
                         required=False)
     parser.add_argument('--field',
                         nargs='+',
-                        help='The list of intended fields to examine',
+                        help='The intended field of study. ' +
+                        'See README.md for a full list of options',
                         required=False)
 
     args = parser.parse_args()
 
     # Read in the survey data file
-    data = pd.read_csv(args.file_name)
+    try:
+        data = pd.read_csv(args.file_name)
+    except FileNotFoundError:
+        print("Could not find ", args.file_name)
+    except PermissionError:
+        print("Cannot access ", args.file_name)
 
     # Rename columns so they are easier to read and work with
     data = data.set_axis(
@@ -72,22 +76,53 @@ def main():
         '2 or more races': '2+',
         'Other:': 'other'}
 
+    # Define list of STEM fields
+    stem = ['Biology', 'Chemistry', 'Physics', 'Mathematics',
+            'Computer Science/technology', 'Engineering/architecture',
+            'Economics', 'Environmental science/studies', 'Medicine/health',
+            'Earth and/or space science']
+
+    # Define list of non-stem fields
+    non_stem = ['Education', 'Performing arts', 'Visual arts',
+                'Social sciences', 'English/communication', 'Philosophy',
+                'Modern language', 'Law/government', 'Social services']
+
     # Use dictionaries to shorten the responses
     data['gender_id'] = data['gender_id'].map(gen_dict)
     data['race_eth'] = data['race_eth'].map(race_dict)
 
     # filter for just demographics we are interested in
-    # First filter gender identity
-    filtered_gender = utils.filter_data(
-      data,
-      'gender_id',
-      args.gender_identity)
+    # If field of study is specified, then filter for it
+    if args.field is None:
+        filtered_field = data
+    elif args.field[0] == 'stem':
+        filtered_field = utils.filter_data(
+            data,
+            'field',
+            stem)
+    elif args.field[0] == 'non-stem':
+        filtered_field = utils.filter_data(
+            data,
+            'field',
+            non_stem)
+
+    # Then filter gender identity
+    if args.gender_identity is not None:
+        filtered_gender = utils.filter_data(
+          filtered_field,
+          'gender_id',
+          args.gender_identity)
+    else:
+        filtered_gender = filtered_field
 
     # Then filter race/ethnicity
-    filtered_gender_race = utils.filter_data(
-       filtered_gender,
-       'race_eth',
-       args.race_ethnicity)
+    if args.race_ethnicity is not None:
+        filtered_gender_race = utils.filter_data(
+           filtered_gender,
+           'race_eth',
+           args.race_ethnicity)
+    else:
+        filtered_gender_race = filtered_gender
 
     # Make sure filtered data is non-empty
     if len(filtered_gender_race.index) == 0:
@@ -105,9 +140,11 @@ def main():
     all_probs = utils.find_probs(data, "calc2")['Yes']
 
     # Make sure there is at least 1 yes response
-    if 'Yes' in filtered_gender_race.calc2:
+    if 'Yes' in filtered_gender_race.calc2.values:
         filt_probs = utils.find_probs(filtered_gender_race, "calc2")['Yes']
+        print(filt_probs)
     else:
+        print('No students in this group responded "Yes"')
         filt_probs = 0
 
     # Compare to women and men statisitcs
@@ -126,6 +163,9 @@ def main():
                 xlabel="Demographic",
                 ylabel="Probability to take Calculus II",
                 file_name="probabilities_bar.png")
+
+    # Create histogram of reasons student did not take calc 2
+    viz_lib.plot_reasons(data, filtered_gender_race, 'reasons.jpg')
 
 
 if __name__ == '__main__':
