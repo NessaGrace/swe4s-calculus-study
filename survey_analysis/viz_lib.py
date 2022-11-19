@@ -104,8 +104,6 @@ def plot_reasons(all_, filt_, output_file):
     all_counts = np.array(reason_counts_filt)
     filt_counts = np.array(reason_counts_all)
 
-    print(all_counts)
-    print(filt_counts)
     # create the plot
     fig, axs = plt.subplots(nrows=2,
                             ncols=1,

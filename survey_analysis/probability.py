@@ -36,7 +36,12 @@ def main():
     args = parser.parse_args()
 
     # Read in the survey data file
-    data = pd.read_csv(args.file_name)
+    try:
+        data = pd.read_csv(args.file_name)
+    except FileNotFoundError:
+        print("Could not find ", args.file_name)
+    except PermissionError:
+        print("Cannot access ", args.file_name)
 
     # Rename columns so they are easier to read and work with
     data = data.set_axis(
@@ -88,7 +93,9 @@ def main():
 
     # filter for just demographics we are interested in
     # If field of study is specified, then filter for it
-    if args.field[0] == 'stem':
+    if args.field is None:
+        filtered_field = data
+    elif args.field[0] == 'stem':
         filtered_field = utils.filter_data(
             data,
             'field',
@@ -98,8 +105,6 @@ def main():
             data,
             'field',
             non_stem)
-    else:
-        filtered_field = data
 
     # Then filter gender identity
     if args.gender_identity is not None:
