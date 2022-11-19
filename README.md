@@ -30,12 +30,22 @@ python create_data.py \
 
 ##### For Survey Analysis 
 
+This part of the project aims to find the probability that 
+a given student will take Calculus II in the future, based 
+on the inputted survey data. More details on this piece of
+software can be found in the README.md file in the survey_analyis
+directory.
+
+###### Usage example
 ```
 python probability.py \
     --file_name test_sim_data.csv \
-    --gender_identity [cis-W, trans_W] \
-    --race_ethnicity [black]
+    --gender_identity cis_W, trans_W \
+    --race_ethnicity black
 ```
+###### Sample output
+![](survey_analysis/readme_images/probabilities_bar.png)
+![](survey_analysis/readme_images/reasons.jpg)
 
 ##### For Interview Analysis
 
