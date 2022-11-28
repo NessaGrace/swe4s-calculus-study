@@ -47,6 +47,8 @@ to the simulated data. The first 5 interview questions are related to the
 participant's identity. These will be processed separately from the word
 counts related to their experiences in Calc 1. \
 
+The sub_directory interview_txt_and_audio contains the simulated interview including questions. Additionally the audio files of simulated interviews that were put into OtterAI are in this directory as well as .wav files. The generated text files are moslty unedited to show how the speech was picked up by the software. There are some areas of the text files that were corrected to the audio was not as easlity understood by OtterAI but the edits were kept to a minimum. The audio files have varying qualities to try to account for differences in tone, speed, and projection of speech that would be encountered when interviewing multiple different people.\
+
 The files sim_word_list.txt and sim_ques.txt are the word list and question
 list that are associated with the simulated interview data. \
 
