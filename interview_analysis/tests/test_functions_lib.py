@@ -76,7 +76,7 @@ class TestFunctionsLib(BaseTestCases.BaseTest):
         file_list_mixed = fl.file_reader(self.test_file_name_mixed)
         self.assertEqual(file_list_mixed, self.test_file_list_mixed)
 
-        # test if FileNotFoundError raised
+        # test if FileNotFoundError, TypeError raised appropriately
         self.assertRaises(FileNotFoundError, fl.file_reader, "test_file.txt")
         self.assertRaises(TypeError, fl.file_reader, 2)
         self.assertRaises(TypeError, fl.file_reader, ["a", "b"])
@@ -99,7 +99,7 @@ class TestFunctionsLib(BaseTestCases.BaseTest):
         self.assertFalse(len(filtered_list_fcn) > len(self.test_str_lower))
         self.assertFalse(len(filtered_list_fcn) == len(self.test_str_lower))
 
-        # test error raising
+        # test error raising for invalid input
         self.assertRaises(TypeError, fl.filter_by_line, "a", ["a", "b"])
         self.assertRaises(TypeError, fl.filter_by_line, 1, [1, 2])
         self.assertRaises(TypeError, fl.filter_by_line, ["a", "b"], 2)
@@ -112,6 +112,30 @@ class TestFunctionsLib(BaseTestCases.BaseTest):
 
         # test if function successfully splits sentences into words
         self.assertEqual(sentences_split_fcn, words_list)
+        # test if new list is no longer equal to list of sentences
+        self.assertNotEqual(sentences_split_fcn, self.sentence_list)
+        # test that new list has more elements than list of sentences
+        self.assertTrue(len(sentences_split_fcn) > len(self.sentence_list))
+        self.assertFalse(len(sentences_split_fcn) <= len(self.sentence_list))
+
+        # test error raising for invalid input
+        self.assertRaises(TypeError, fl.sentence_splitter, (1, 2))
+        self.assertRaises(TypeError, fl.sentence_splitter, "a")
+        self.assertRaises(TypeError, fl.sentence_splitter, [1, 2])
+        self.assertRaises(TypeError, fl.sentence_splitter, [1, "a"])
+
+    # test compare_files() function:
+    def test_compare_files(self):
+        # file_list_lower = fl.file_reader(self.test_file_name_lower)
+        # file_list_mixed = fl.file_reader(self.test_file_name_mixed)
+        list1 = ['ray', 'of', 'light', 'rainbow', 'cloud']
+        list2 = ['ray', 'of', 'light', 'sky', 'woods']
+        comp_percent = fl.compare_files(list1,
+                                        list2)
+
+        percent_sim = (3/5)*100
+
+        self.assertEqual(percent_sim, comp_percent)
 
 
 if __name__ == '__main__':
