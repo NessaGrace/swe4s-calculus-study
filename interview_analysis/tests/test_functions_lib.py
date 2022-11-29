@@ -124,6 +124,25 @@ class TestFunctionsLib(BaseTestCases.BaseTest):
         self.assertRaises(TypeError, fl.sentence_splitter, [1, 2])
         self.assertRaises(TypeError, fl.sentence_splitter, [1, "a"])
 
+    # test remove_punctuation function:
+    def test_remove_punctuation(self):
+        punc = ["I", "like", "pie,", "but", "I", "like", "s'mores", "better.",
+                "I", "love", "strawberries!"]
+
+        no_punc = ["I", "like", "pie", "but", "I", "like", "smores", "better",
+                "I", "love", "strawberries"]
+
+        no_punc_fcn = fl.remove_punctuation(punc)
+
+        # test if punctuation is removed successfully
+        self.assertEqual(no_punc, no_punc_fcn)
+        self.assertNotEqual(punc, no_punc_fcn)
+
+        # test error raising for invalid input
+        self.assertRaises(TypeError, fl.remove_punctuation, "ants")
+        self.assertRaises(TypeError, fl.remove_punctuation, [1, 2])
+        self.assertRaises(TypeError, fl.remove_punctuation, [1, "a"])
+
     # test compare_files() function:
     def test_compare_files(self):
         # file_list_lower = fl.file_reader(self.test_file_name_lower)
@@ -140,3 +159,4 @@ class TestFunctionsLib(BaseTestCases.BaseTest):
 
 if __name__ == '__main__':
     unittest.main()
+
