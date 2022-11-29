@@ -1,3 +1,6 @@
+import string
+import os
+
 def file_reader(file_name):
     """Read a text file and add contents to list by line
 
@@ -15,12 +18,16 @@ def file_reader(file_name):
     if type(file_name) != str:
         raise TypeError("invalid input: must be string")
 
+    if os.path.getsize(file_name) == 0:
+        raise Exception('file is empty')
+
     file_contents = open(file_name, 'r')
     file_list = []
     for line in file_contents:
         file_list.append(line.rstrip().lower())
     file_contents.close()
     return file_list
+
     raise FileNotFoundError('file not found')
 
 def filter_by_line(list1, list2):
@@ -76,6 +83,43 @@ def sentence_splitter(list1):
         for word in sentence.split():
             list_of_words.append(word)
     return list_of_words
+
+def remove_punctuation(list1):
+    """Removes punctuation from a list of strings
+
+    Parameters:
+    -----------
+    list1 : list of strings
+            list of strings with punctuation
+
+    Returns:
+    --------
+    list_no_punc_all : list of strings
+                   list of strings with punctuation removed
+    """
+
+    if type(list1) != list:
+        raise TypeError("invalid input: must be list of strings")
+
+    for element in list1:
+        if type(element) != str:
+            raise TypeError('invalid input: must be list of strings')
+
+    list_no_punc = []
+    list_no_punc_all = []
+
+    for element in list1:
+        # converts Codepage 1252 encoding to Unicode UTF-8 (some
+        # apostrophes in wrong format)
+        encoded = element.encode('cp1252')
+        decoded = encoded.decode('utf-8')
+        # removes punctuation from list elements
+        list_no_punc.append(decoded.translate(str.maketrans('', '', string.punctuation)))  # nopep8
+    # removes new UTF-8 apostrophes that were missed
+    for element in list_no_punc:
+        list_no_punc_all.append(element.replace("’", ""))
+
+    return list_no_punc_all
 
 def compare_files(list1, list2):
     """Compare file contents as stored in lists for similarity
