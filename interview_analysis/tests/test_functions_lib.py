@@ -52,6 +52,10 @@ class TestFunctionsLib(BaseTestCases.BaseTest):
 
         g.close()
 
+        # prepare empty file
+        cls.empty_file = "empty.txt"
+        open(cls.empty_file, 'w').close()
+
         # prepare second list to filter out
         cls.list_to_filter = ['apple', 'orange']
 
@@ -62,6 +66,7 @@ class TestFunctionsLib(BaseTestCases.BaseTest):
     def tearDownClass(cls):
         os.remove(cls.test_file_name_lower)
         os.remove(cls.test_file_name_mixed)
+        os.remove(cls.empty_file)
         cls.list_to_filter = None
         cls.sentence_list = None
 
@@ -80,6 +85,9 @@ class TestFunctionsLib(BaseTestCases.BaseTest):
         self.assertRaises(FileNotFoundError, fl.file_reader, "test_file.txt")
         self.assertRaises(TypeError, fl.file_reader, 2)
         self.assertRaises(TypeError, fl.file_reader, ["a", "b"])
+
+        # test if error raised for empty file
+        self.assertRaises(Exception, fl.file_reader, self.empty_file)
 
     # test filter_by_line() function
     def test_filter_by_line(self):
