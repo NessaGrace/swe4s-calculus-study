@@ -179,22 +179,22 @@ The graphs sim_int_1_word_freq.png through sim_int_5_word_freq.png as well as th
 also produced by running this program. These graphs are shown below.
 
 sim_int_1_word_freq.png:
-![](interview_analysis/graphs/sim_int_1_word_freq.png)
+![](graphs/sim_int_1_word_freq.png)
 
 sim_int_2_word_freq.png:
-![](interview_analysis/graphs/sim_int_2_word_freq.png)
+![](graphs/sim_int_2_word_freq.png)
 
 sim_int_3_word_freq.png:
-![](interview_analysis/graphs/sim_int_3_word_freq.png)
+![](graphs/sim_int_3_word_freq.png)
 
 sim_int_4_word_freq.png:
-![](interview_analysis/graphs/sim_int_4_word_freq.png)
+![](graphs/sim_int_4_word_freq.png)
 
 sim_int_5_word_freq.png:
-![](interview_analysis/graphs/sim_int_5_word_freq.png)
+![](graphs/sim_int_5_word_freq.png)
 
 total_freq_graph.png:
-![](interview_analysis/graphs/total_freq_graph.png)
+![](graphs/total_freq_graph.png)
 
 # How to Install the Software:
 
