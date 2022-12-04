@@ -1,98 +1,192 @@
 ## Directory Description:
 
-This directory creates the interview analysis software. The current type of
+This directory creates interview analysis software. The current type of
 analysis is deductive analysis, wherein we search each interview transcript
 for words from a pre-determined list and count the frequency of each word.
-The main script is deductive.py, which relies on a number of dependencies,
-including the libraries argparse, string, matplotlib.pyplot, numpy, pandas,
-glob, sys, and os. It also uses the function file_reader(), which is contained
-within functions_lib.py. This function reads a file and produces a list of
-its lines as output and reduces redundancy in the code, where several files
-must be processed. In practice, deductive.py reads in and processes multiple
+
+The main script is deductive_analysis.py. The main script uses several
+functions, which are contained in functions_lib.py. In particular, 
+functions_lib.py includes the functions file_reader(), filter_by_line(),
+sentence_splitter(), remove_punctuation(), word_counter(), and
+compare_files(). All of these functions have been implemented in 
+deductive_analysis.py except compare_files(), which is currently under
+development.
+
+deductive_analysis.py reads in and processes multiple
 interview transcript text files into lists of words that contain only
 interview answers (i.e. not the questions) and no puncutation. Then, the
 words in the list for each transcript are compared with the pre-determined
 word list and a dictionary called word_counter is produced that gives the
 count for each word in a given transcript. A word frequency plot is produced
-for each transcript analyzed. In the future, there will be several
-improvements made including adding more statistics to analyze trends between
-transcripts and word frequency for all transcripts collectively.
+for each transcript analyzed. Additionally, the script generates a dictionary
+that gives the total number of counts for each word in the word list across
+all transcripts and plots the resulting word frequency plot. Currently, the
+script only supports interview transcripts that have no errors (i.e. that are
+not produced by speech-to-text technology), so the user should use the sub-
+directories /data_files/transcripts_no_audio_1st_five and
+data_files/transcripts_no_audio_last_five for now.
+
+Input text files are in the sub-directory /data_files while graphical output
+is included in the sub-directory /graphs.
+
+# Special Considerations:
+While remove_punctuation() currently passes its unit tests, we expect that
+there may be more development necessary for this function. For example, it
+is currently unclear how well remove_punctuation() handles other types of 
+character encoding. Furthermore, it would be ideal to convert all characters
+into one encoding style before removing the punctuation characters. While
+this is attempted, the hard-coding currently present is not ideal and 
+will be improved in future releases. 
+
+When preparing the scripts to process text files, it is important to consider
+that most text files will be copied and pasted from somewhere else. This means
+that the lines may run off the screen, and the program should be able to handle
+this. The program should also be able to handle both single spacing and double
+spacing. For these reasons, all of our text files have lines that run off the
+screen when these occur naturally in the transcripts/questions. Additionally,
+we demonstrate that our program works just as well with single spacing as it
+does with double spacing through the successful processing of the text file
+sim_int_sample.txt, whose graph is named sim_int_sample_word_freq.png.
 
 # Unit and Functional Tests:
 
-All tests are included in the sub-directory tests. The unit tests are
-contained within test_functions_lib.py and test for expected output
-with both lowercase and mixed-case examples, as well as checking that the
-FileNotFoundError is raised appropriately. The unit tests utilize the
-unittest, os, and sys libraries. The functional tests are contained
-within functional_tests.sh and test for proper execution of both the 
-file_reader() function and deductive.py. It uses the Stupid Simple baSh
-testing framework, which is also included in the tests sub-directory, and
-it also relies on the script read_files.py (located in the directory 
-interview_analysis) in order to test the output from file_reader().
+All tests are included in the sub-directory /tests. The unit tests are
+contained within test_functions_lib.py and test each of the 6 functions
+in functions_lib.py, using positive and negative assertions, checking 
+that errors are raised correctly, and checking various edge cases, 
+including cases where the input parameters are randomly generated.
+
+The functional tests are contained in functional_tests.sh and test for
+proper execution of deductive_analysis.py and if the graphical output
+is generated. It uses the Stupid Simple baSh testing framework, which is
+also included in the /tests sub-directory.
+
+# Dependencies:
+
+**deductive_analysis.py**
+    - argparse
+    - string
+    - matplotlib.pyplot (requires installation)
+    - numpy (requires installation)
+    - pandas (requires installation)
+    - glob (used for handling pathnames with specific pattern)
+    - os
+    - sys
+    - nltk (requires installation, commonly used in natural language
+            processing (NLP), last push 4 days ago as of 12/4/2022,
+            created in 2001 and still maintained, new papers in NLP use
+            nltk)
+
+**functions_lib.py**
+    - string
+    - os
+
+**test_functions_lib.py**
+    - unittest
+    - sys
+    - os
+    - random
+    - string
+
+**Other**
+    - pycodestyle (requires installation)
 
 # How to Use the Project:
 
 **Files**
 
-In the directory data_files, the sub-directory sample contains a sample
-interview script, a sample question list, and a sample word list. These 
-files are not currently being used but are being retained in case they 
-are needed for any sort of testing later on. \
+All input text files are included in the sub-directory /data_files.
 
-The sub-directory transcripts_no_audio contains ten simulated interview
-transcripts. The first 5 simulated interview scripts come from the OpenAI
-tool and are biased. The next 5 are written responses to add more diversity
-to the simulated data. The first 5 interview questions are related to the 
-participant's identity. These will be processed separately from the word
-counts related to their experiences in Calc 1. \
+    - /sample: sub-directory containing a sample interview script,
+          a sample question list, and a sample word list. These
+          files are not currently being used but are being retained
+          in case they are needed for any sort of testing later on.
+
+    - /transcripts_no_audio_1st_five: 5 simulated interviews
+         generated by OpenAI (and are biased). 
+
+    - /transcripts_no_audio_last_five: 5 transcripts from written responses
+          to add more diversity to biased OpenAI transcripts.
+
+    - /transcripts_audio: transcripts generated by Otter.ai speech-to-text
+          technology from audio recordings of the 5 OpenAI transcripts
 
 The files sim_word_list.txt and sim_ques.txt are the word list and question
-list that are associated with the simulated interview data. \
-
-The output from deductive.py is stored in the directory graphs. Currently,
-this contains 10 bar graphs with word frequency for the simulated interviews.
+list that are associated with the simulated interview data. 
 
 **Examples**
 
 Below are examples of how to run the files from within the directory
-interview_analysis. 
+/interview_analysis. 
 
 To run the main script: 
-
+```
 python deductive.py \
     --word_list_file_name data_files/sim_word_list.txt \
-    --questions_file_name data_files/sim_ques.txt
-
+    --questions_file_name data_files/sim_ques.txt \
+    --data_folder data_files \ 
+    --current_transcripts_folder transcripts_no_audio_1st_five \
+    --graphs_folder graphs
+```
 To run the unit tests: 
-
+```
 python tests/test_functions_lib.py 
+```
 
 To run the functional tests: 
-
-bash functional_tests.sh
-
+```
+bash tests/functional_tests.sh
+```
 **Command Line Arguments/Parameters**
-
-In deductive.py: 
 
     - word_list_file_name: the name of the current word list
       file being used 
+        - Options:
+            - /data_files/sample/random_word_list.txt
+            - /data_files/sim_word_list.txt
     - questions_file_name: the name of the current question
-      list file being used 
+      list file being used
+        - Options:
+            - /data_files/sample/sample_question_list.txt
+            - /data_files/sim_ques.txt
+    - data_folder: the directory where all txt/data files are stored
+        - Options:
+            - /data_files
+    - current_transcripts_folder: the directory where all transcripts
+      currently in use are stored
+        - Options:
+            - /transcripts_audio (currently not supported)
+            - /transcripts_no_audio_1st_five
+            - /transcripts_no_audio_last_five
+    - graphs_folder: the directory where all graphs are outputted to
+        - Options:
+            - /graphs (may change directory name at user discretion)
 
-In read_files.py: 
-    - file_name: the name of the file used to test file_reader()
-      in functional_tests.sh
+# Output
+Expected output from running deductive_analysis.py with the command line
+arguments given in the Examples section is given below:
+```
+sim_int_1 {'good': 2, 'well': 2, 'interested': 4, 'available': 1, 'listened': 1, 'praising': 1}
+sim_int_2 {'good': 1, 'well': 2, 'interested': 1, 'interesting': 2, 'available': 1, 'listened': 1, 'praising': 1}
+sim_int_3 {'good': 1, 'well': 4, 'interested': 1, 'interesting': 2, 'available': 1, 'listened': 1, 'enjoyed': 3, 'praising': 1}
+sim_int_4 {'good': 2, 'well': 3, 'interesting': 2, 'available': 1, 'listened': 1, 'praising': 1}
+sim_int_5 {'good': 2, 'well': 3, 'available': 1, 'listened': 1, 'enjoyed': 1, 'praising': 1}
+{'good': 8, 'well': 14, 'interested': 6, 'available': 5, 'listened': 5, 'praising': 5, 'interesting': 6, 'enjoyed': 4}
+```
+The graphs sim_int_1_word_freq.png through sim_int_5_word_freq.png as well as the graph total_freq_graph.png are
+also produced by running this program. These graphs are shown below.
 
 # How to Install the Software:
 
 For this project, the following installations must be completed
-in the command line: \
-    - conda install numpy \
-    - conda install pycodestyle \
-    - conda install pandas \
+in the command line: 
+```
+    - conda install numpy 
+    - conda install pycodestyle 
+    - conda install pandas 
     - conda install matplotlib 
+    - conda install nltk 
+```
 
  To run the functional tests using the Stupid Simple baSh Framework,
  you will also need to install the network utility `wget`. `wget` can
