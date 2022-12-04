@@ -1,35 +1,67 @@
 Let’s begin with a few questions to get a sense of who you are as a participant. First, do you mind if I ask your gender identity?
 
+I am male
+
 What about your racial/ethnic background? Do you mind sharing that as well?
 
-Now, what degree are you currently pursuing? If it’s a graduate degree, what was your undergraduate degree in?
+I am black
+
+Now, what degree are you currently pursuing? If it’s a graduate degree, what was your undergraduate degree(s) in?
+
+I am getting my bachelors in creative technology design
 
 When did you take Calculus I at CU?
 
+Fall 2020
+
 And what was the highest mathematics course that you had taken before you got to Calculus 1?
+
+I took trigonometry
 
 What field did you think you wanted to go into before Calculus 1? Did taking Calculus 1 change that at all?
 
+I’m interested in web and app design.
+
 How did you feel like you did in the class in terms of your conceptual understanding? Why? Did you feel motivated to continue to Calculus 2?
 
+I understood the concepts a little but I was somewhat confused the whole course. After the class I didn’t feel confident as a member
+
 In your opinion, what were the hardest topics taught in the [calculus] class? The easiest?
+ 
+The hardest topic for me were continuity, but the easiest was integration
 
 Before you took Calculus 1, can you describe the mental image you had of a STEM scientist or researcher? What did they look like?
 
+I imagined a scientist as old white men who have been working for a few decades.
+
 Can you describe some of your academic and personal interests before taking Calculus 1? Did you feel like these related to calculus at all?
+
+I was interested in art design and calculus 1 did get me a little more interested on math after taking the course
 
 I want to ask you some questions about your instructor now. You may not remember all the specifics; that is totally fine. First, how often do you remember the instructor praising your work?
 
+I was given feedback on occasion.
+
 How often would you say that you received partial credit?
+
+Yes, partial credit was given on everything.
 
 How often did the instructor call on you in class when you raised your hand? What about when you didn’t raise your hand?
 
-#How did you feel when you were called on when your hand wasn't raised?
+I would get called on occasionally but never when my hand was down.
 
 Did you feel like you had a good Calculus I instructor? As in: did they explain topics well, listen to you, and help you to understand the hard topics? Were they available for office hours? Did they show you the applications of what you were learning?
 
-How was your Calculus I classroom run? As in: did the instructor lecture a lot? Did the show you how to do example problems? Were you allowed to work with other students? What kinds of assignments and assessments did you have? Were there ever class discussions or was input ever allowed from students?
+The instructor was good and was available for office hours, and even answered emails outside of them.
+
+How was your Calculus I classroom run? As in: did the instructor lecture a lot? Did they show you how to do example problems? Were you allowed to work with other students? What kinds of assignments and assessments did you have? Were there ever class discussions or was input ever allowed from students?
+
+The classroom was very collaborative and we discussed problems in class that weren't understood as well.
 
 Did you end up taking Calculus II? Why or why not?
 
+Yes, it's a major requirement.
+
 Well, that about wraps things up. Thank you so much for participating in this interview. I am extremely grateful!!
+
+You're welcome.
