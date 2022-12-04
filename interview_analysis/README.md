@@ -63,32 +63,32 @@ also included in the /tests sub-directory.
 
 # Dependencies:
 
-**deductive_analysis.py**
-    - argparse
-    - string
-    - matplotlib.pyplot (requires installation)
-    - numpy (requires installation)
-    - pandas (requires installation)
-    - glob (used for handling pathnames with specific pattern)
-    - os
-    - sys
+**deductive_analysis.py** \
+    - argparse \
+    - string \
+    - matplotlib.pyplot (requires installation) \
+    - numpy (requires installation) \
+    - pandas (requires installation) \
+    - glob (used for handling pathnames with specific pattern) \
+    - os \
+    - sys \
     - nltk (requires installation, commonly used in natural language
             processing (NLP), last push 4 days ago as of 12/4/2022,
             created in 2001 and still maintained, new papers in NLP use
             nltk)
 
-**functions_lib.py**
+**functions_lib.py** \
     - string \
-    - os \
+    - os 
 
 **test_functions_lib.py**
     - unittest \
     - sys \
     - os \
     - random \
-    - string \
+    - string 
 
-**Other**
+**Other** \
     - pycodestyle (requires installation)
 
 # How to Use the Project:
