@@ -178,6 +178,24 @@ sim_int_5 {'good': 2, 'well': 3, 'available': 1, 'listened': 1, 'enjoyed': 1, 'p
 The graphs sim_int_1_word_freq.png through sim_int_5_word_freq.png as well as the graph total_freq_graph.png are
 also produced by running this program. These graphs are shown below.
 
+sim_int_1_word_freq.png:
+![1st transcript](/graphs/sim_int_1_word_freq.png)
+
+sim_int_2_word_freq.png:
+![2nd transcript](/graphs/sim_int_2_word_freq.png)
+
+sim_int_3_word_freq.png:
+![3rd transcript](/graphs/sim_int_3_word_freq.png)
+
+sim_int_4_word_freq.png:
+![4th transcript](/graphs/sim_int_4_word_freq.png)
+
+sim_int_5_word_freq.png:
+![5th transcript](/graphs/sim_int_5_word_freq.png)
+
+total_freq_graph.png:
+![All transcripts](/graphs/total_freq_graph.png)
+
 # How to Install the Software:
 
 For this project, the following installations must be completed
