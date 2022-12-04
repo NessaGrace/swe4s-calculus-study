@@ -66,7 +66,7 @@ sim_int_5 {'good': 2, 'well': 3, 'available': 1, 'listened': 1, 'enjoyed': 1, 'p
 Below are word frequency plots from one interview transcript and from five interview transcripts, respectively.
 
 sim_int_5_word_freq.png:
-![5th transcript](/graphs/sim_int_5_word_freq.png)
+![](interview_analysis/graphs/sim_int_5_word_freq.png)
 
 total_freq_graph.png:
-![All transcripts](/graphs/total_freq_graph.png)
+![](interview_analysis/graphs/total_freq_graph.png)
