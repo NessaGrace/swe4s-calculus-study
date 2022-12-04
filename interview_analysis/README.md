@@ -78,15 +78,15 @@ also included in the /tests sub-directory.
             nltk)
 
 **functions_lib.py**
-    - string
-    - os
+    - string \
+    - os \
 
 **test_functions_lib.py**
-    - unittest
-    - sys
-    - os
-    - random
-    - string
+    - unittest \
+    - sys \
+    - os \
+    - random \
+    - string \
 
 **Other**
     - pycodestyle (requires installation)
