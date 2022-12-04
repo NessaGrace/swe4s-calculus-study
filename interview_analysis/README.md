@@ -81,7 +81,7 @@ also included in the /tests sub-directory.
     - string \
     - os 
 
-**test_functions_lib.py**
+**test_functions_lib.py** \
     - unittest \
     - sys \
     - os \
