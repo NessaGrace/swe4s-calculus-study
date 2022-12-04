@@ -8,15 +8,14 @@ run deductive_analysis python ../deductive_analysis.py \
     --word_list_file_name ../data_files/sim_word_list.txt \
     --questions_file_name ../data_files/sim_ques.txt \
     --data_folder ../data_files \
-    --current_transcripts_folder transcripts_no_audio_last_five \
+    --current_transcripts_folder transcripts_no_audio_1st_five \
     --graphs_folder ../graphs
-assert_in_stdout sim_int_10 {'interested': 1}
-assert_in_stdout sim_int_6 {'interested': 1}
-assert_in_stdout sim_int_7 {'good': 1, 'well': 1, 'interested': 3, 'available': 1}
-assert_in_stdout sim_int_8 {'good': 1, 'well': 2, 'interested': 1}
-assert_in_stdout sim_int_9 {'interested': 1}
-assert_in_stdout sim_int_sample {'interested': 1}
-assert_in_stdout "{'interested': 8, 'good': 2, 'well': 3, 'available': 1}"
+assert_in_stdout sim_int_1 {'good': 2, 'well': 2, 'interested': 4, 'available': 1, 'listened': 1, 'praising': 1}
+assert_in_stdout sim_int_2 {'good': 1, 'well': 2, 'interested': 1, 'interesting': 2, 'available': 1, 'listened': 1, 'praising': 1}
+assert_in_stdout sim_int_3 {'good': 1, 'well': 4, 'interested': 1, 'interesting': 2, 'available': 1, 'listened': 1, 'enjoyed': 3, 'praising': 1}
+assert_in_stdout sim_int_4 {'good': 2, 'well': 3, 'interesting': 2, 'available': 1, 'listened': 1, 'praising': 1}
+assert_in_stdout sim_int_5 {'good': 2, 'well': 3, 'available': 1, 'listened': 1, 'enjoyed': 1, 'praising': 1}
+assert_in_stdout "{'good': 8, 'well': 14, 'interested': 6, 'available': 5, 'listened': 5, 'praising': 5, 'interesting': 6, 'enjoyed': 4}"
 
 
 echo "Checking that there are no errors"
